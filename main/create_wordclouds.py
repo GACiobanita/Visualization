@@ -1,13 +1,16 @@
 from implementation.wordcloud_generator import WordCloudGenerator
+from implementation.file_receiver import FileReceiver
 
 def main():
     wc_generator = WordCloudGenerator()
+    file_receiver = FileReceiver()
 
     #acquire paths
-    wc_generator.acquire_input_path()
-    wc_generator.acquire_output_path()
+    file_receiver.acquire_input_path()
+    file_receiver.acquire_output_path()
 
     #create word clouds
+    wc_generator.acquire_csv_files(file_receiver.csv_files)
     wc_generator.create_dictionaries()
     wc_generator.create_wordcloud()
 
