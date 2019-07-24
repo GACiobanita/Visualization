@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-from nltk.corpus import stopwords
 from .data_adjustments import DataAdjustment
 import os
 
@@ -9,9 +8,6 @@ import os
 class BarChartGenerator(object):
 
     def __init__(self):
-        self.STOP_WORDS = set(stopwords.words("english"))
-        self.word_clouds = []
-        self.word_freqs = []
         self.csv_files = []
         self.total_word_count = {'0-50': 0, '51-100': 0, '101-200': 0, '201-300': 0, '301-400': 0, '400+': 0}
         self.per_file_word_count = []
@@ -56,7 +52,7 @@ class BarChartGenerator(object):
         for dictionary in self.per_file_word_count:
             self.create_horizontal_bar_chart(dictionary, "Total Word Usage for " + str(year))
             year += 1
-    def show_bar_charts(self):
+    def display_bar_charts(self):
         for chart in self.bar_charts:
             chart.show()
 

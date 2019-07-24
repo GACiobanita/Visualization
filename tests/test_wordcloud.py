@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 from wordcloud import WordCloud
-from implementation.wordcloud_generator import WordCloudGenerator
+from implementation.word_cloud_generator import WordCloudGenerator
 from implementation.file_receiver import FileReceiver
 
 

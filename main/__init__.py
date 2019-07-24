@@ -1,1 +1,2 @@
-from implementation import wordcloud_generator
+from implementation import word_cloud_generator
+from implementation import bar_chart_generator
