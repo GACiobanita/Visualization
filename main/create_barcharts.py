@@ -12,7 +12,7 @@ def main():
     bc_generator.barchart_generator.calculate_text_length()
     bc_generator.barchart_generator.create_overall_bar_charts()
 
-    bc_generator.save_bar_charts()
+    bc_generator.save_bar_charts(file_receiver.output_folder_path)
 
     # display word clouds
     while True:

@@ -1,27 +1,24 @@
-from implementation.word_cloud_generator import WordCloudGenerator
+from implementation.line_chart_generator import LineChartGenerator
 from implementation.file_receiver import FileReceiver
 
 def main():
-    wc_generator = WordCloudGenerator()
+    lc_generator = LineChartGenerator()
     file_receiver = FileReceiver()
 
-    #acquire paths
     file_receiver.acquire_input_path()
     file_receiver.acquire_output_path()
 
-    #create word clouds
-    wc_generator.acquire_csv_files(file_receiver.csv_files)
-    wc_generator.create_dictionaries()
-    wc_generator.create_wordcloud()
+    lc_generator.acquire_csv_files(file_receiver.csv_files)
+    lc_generator.calculate_yearly_reviews()
+    lc_generator.calculate_app_review()
 
-    #save word clouds
-    wc_generator.save_word_cloud(file_receiver.output_folder_path)
+    lc_generator.save_bar_charts(file_receiver.output_folder_path)
 
-    #display word clouds
+    # display word clouds
     while True:
         input_text = input("Would you like to see the word clouds? (Y/N) :")
         if input_text == 'Y':
-            wc_generator.display_word_cloud()
+            lc_generator.display_bar_charts()
             break
         else:
             if input_text == 'N':

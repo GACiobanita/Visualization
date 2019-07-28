@@ -9,18 +9,15 @@ class Test_LineChart(unittest.TestCase):
         self.file_receiver = FileReceiver()
         self.line_chart_generator = LineChartGenerator()
 
-    def test_calculate_monthly_reviews(self):
+    def test_calculate_yearly_reviews(self):
         self.file_receiver.acquire_input_path()
         self.line_chart_generator.acquire_csv_files(self.file_receiver.csv_files)
-        self.line_chart_generator.calculate_monthly_reviews()
-        self.assertEqual(5, len(self.line_chart_generator.all_data))
-        print(self.line_chart_generator.all_data)
+        self.line_chart_generator.calculate_yearly_reviews()
 
-    def test_create_line_chart(self):
+    def test_calculate_monthly_app_reviews(self):
         self.file_receiver.acquire_input_path()
         self.line_chart_generator.acquire_csv_files(self.file_receiver.csv_files)
-        self.line_chart_generator.calculate_monthly_reviews()
-        self.line_chart_generator.create_line_charts()
+        self.line_chart_generator.calculate_app_review()
 
 if __name__ == "__main__":
     unittest.main()

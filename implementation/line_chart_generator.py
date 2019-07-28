@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
+from re import search
 from .data_adjustments import DataAdjustment
+import calendar
+import math
 import os
 
 
@@ -11,64 +13,166 @@ class LineChartGenerator(object):
         self.csv_files = []
         # a list containing lists which are composed of all of the months of the year and the review count for each month
         # in this form
-        # ((1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0, 10:0, 11:0, 12:0), (..), (..) ...)
-        self.all_data = []
         self.line_charts = []
         self.data_adjuster = DataAdjustment()
 
     def acquire_csv_files(self, csv_files):
         self.csv_files = csv_files
 
-    def calculate_monthly_reviews(self):
+    def calculate_yearly_reviews(self):
+        all_year_data = []
         for file in self.csv_files:
             data = pd.read_csv(file)
-            monthly_reviews = sorted(data['Month'].value_counts().to_dict().items())
-            self.all_data.append(monthly_reviews)
+            found_monthly_reviews = sorted(data['Month'].value_counts().to_dict().items())
 
-    def create_line_charts(self):
+            for i in range(1, 13):
+                found = False
+                for x, y in found_monthly_reviews:
+                    if x == i:
+                        found = True
+                if found is False:
+                    found_monthly_reviews.append((i, 0))
 
-        fig = plt.figure()
+            year_search = search('\d{4}', file)
+            year = year_search.group(0) if year_search else 'XXXX'
+            all_year_data.append((year, found_monthly_reviews))
+        self.create_charts(all_year_data)
+
+    def calculate_app_review(self):
+        for file in self.csv_files:
+            yearly_app_data = []
+            data = pd.read_csv(file)
+            app_reviews = sorted(data['App_ID'].unique())
+            app_count = 1
+            for app_id in app_reviews:
+                all_monthly_data = []
+                all_monthly_data.append(data.loc[data['App_ID'] == app_id, 'Month'].value_counts().to_dict())
+                app_monthly_data = []
+                for value in all_monthly_data:
+                    for i in range(1, 13):
+                        app_monthly_data.append((i, value.get(i, 0)))
+                yearly_app_data.append(("APP_" + str(app_count), app_monthly_data))
+                app_count += 1
+            self.create_charts(yearly_app_data)
+
+    def create_charts(self, all_data):
+
+        fig = plt.figure(figsize=(10, len(all_data)))
+        plt.title('Reviews created by identifiable individuals', fontsize=18)
         ax = fig.add_subplot(1, 1, 1)
 
-        xlabels = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-                   'October',
-                   'November', 'December', '']
-        ylabels = ['', '2016', '2015', '2014', '2013', '2012', '']
-        colours = ['b', 'r', 'y', 'k', 'm', 'c']
+        figure_size_value = self.get_maximum_data_value(all_data)
 
-        x_axis_points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        y_axis_points = [1, 2, 3, 4, 5]
-        colour_count = 0
+        x_labels = ['']
+        y_labels = ['']
+        self.create_axis_labels(data_container=all_data, x_axis_labels=x_labels, y_axis_labels=y_labels)
+
+        x_axis_points = []
+        y_axis_points = []
+        self.create_axis_points(data_container=all_data, x_axis_points=x_axis_points, y_axis_points=y_axis_points)
 
         for y_point in y_axis_points:
             previous_x = 1
             previous_y = y_point
             for x_point in x_axis_points:
-                plt.plot((x_point, previous_x), (previous_y, y_point), c='k', zorder=1)
-            colour_count += 1
+                ax.plot((x_point, previous_x), (previous_y, y_point), c='k', zorder=1, linewidth=0.5)
 
-        colour_count = 0
-        y_count = len(self.all_data)
-        for year in self.all_data:
-            for key, value in year:
-                plt.scatter(key, y_count, s=self.clamp(value, 50, 4000), c=colours[colour_count], zorder=2)
+        y_count = len(y_labels) - 2
+        for year in all_data:
+            for key, value in year[1]:
+                ax.scatter(key, y_count,
+                           s=self.categorise_symbol_size(value, self.round_up(figure_size_value)),
+                           c='r',
+                           edgecolors='k',
+                           linewidths='2',
+                           zorder=2,
+                           marker='s',
+                           label=None)
             y_count -= 1
-            colour_count += 1
 
         # And a corresponding grid
         ax.grid(False)
         ax.spines['right'].set_visible(False)
         ax.spines['top'].set_visible(False)
-        plt.xticks(list(range(0, 14, 1)))
-        plt.yticks(list(range(0, 7, 1)))
+        plt.xticks(list(range(0, len(x_labels), 1)))
+        plt.yticks(list(range(0, len(y_labels), 1)))
         plt.tick_params(pad=0)
         ax.set_xticklabels(
-            xlabels, rotation=45, fontsize=20, va='top', ha='right')
+            x_labels, rotation=45, fontsize=10, va='top', ha='right')
         ax.set_yticklabels(
-            ylabels, fontsize=20)
+            y_labels, fontsize=10)
+
+        self.create_legend(self.round_up(figure_size_value, -len(str(figure_size_value)) + 1))
 
         plt.tight_layout()
-        plt.show()
+        self.line_charts.append(fig)
 
-    def clamp(self, n, minn, maxn):
-        return max(min(maxn, n), minn)
+    def create_axis_points(self, data_container, x_axis_points, y_axis_points):
+        x_count = 1
+        y_count = 1
+        for data in data_container:
+            y_axis_points.append(y_count)
+            y_count += 1
+        for data in data_container[0][-1]:
+            x_axis_points.append(x_count)
+            x_count += 1
+
+    # extract the keys from the data set to be used as labels in the graph
+    def create_axis_labels(self, data_container, x_axis_labels, y_axis_labels):
+        for key, value in data_container[0][-1]:
+            x_axis_labels.append(calendar.month_name[int(key)])
+        for data_name, data_list in data_container:
+            y_axis_labels.append(data_name)
+        x_axis_labels.append('')
+        y_axis_labels.append('')
+
+    def create_legend(self, max_value):
+        plt.scatter([], [], c='r', s=200, marker='s', edgecolors='k', linewidths='2',
+                    label="0 <-> " + str(max_value // 4))
+        plt.scatter([], [], c='r', s=500, marker='s', edgecolors='k', linewidths='2',
+                    label=str(max_value // 4 + 1) + " <-> " + str(max_value // 4 * 2))
+        plt.scatter([], [], c='r', s=800, marker='s', edgecolors='k', linewidths='2',
+                    label=str(max_value // 4 * 2 + 1) + " <-> " + str(max_value // 4 * 3))
+        plt.scatter([], [], c='r', s=1100, marker='s', edgecolors='k', linewidths='2',
+                    label=str(max_value // 4 * 4) + " +")
+        plt.legend(loc='upper left', title='Review Count', title_fontsize=18, bbox_to_anchor=(1.04, 1), borderpad=1.5,
+                   labelspacing=2.5, handletextpad=1.5, frameon=False)
+
+    def categorise_symbol_size(self, value, max_value):
+        size = 200
+        difference = 300
+        if value == 0:
+            return 0
+        elif 0 < value <= max_value // 4:
+            return size
+        elif 751 <= value <= max_value // 4 * 2:
+            return size + difference * 1
+        elif 1501 <= value <= max_value // 4 * 3:
+            return size + difference * 2
+        else:
+            return size + difference * 3
+
+    def get_maximum_data_value(self, all_data):
+        max_val = 0
+        for data in all_data:
+            for key, value in data[1]:
+                if value > max_val:
+                    max_val = value
+        return max_val
+
+    def round_up(self, n, decimals=0):
+        multiplier = 10 ** decimals
+        return int(math.ceil(n * multiplier) / multiplier)
+
+    def save_bar_charts(self, output_folder_path):
+        count = 0
+        self.line_charts[0].savefig(
+            output_folder_path + "\\" + "fraud_apps_640_yearly_line_chart.png")
+        for chart in self.line_charts[1:]:
+            head, tail = os.path.split(self.csv_files[count])
+            chart.savefig(output_folder_path + "\\" + tail[:-4] + "_line_chart.png")
+            count += 1
+
+    def display_bar_charts(self):
+        for chart in self.line_charts:
+            chart.show()

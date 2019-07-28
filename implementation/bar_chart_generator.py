@@ -52,6 +52,7 @@ class BarChartGenerator(object):
         for dictionary in self.per_file_word_count:
             self.create_horizontal_bar_chart(dictionary, "Total Word Usage for " + str(year))
             year += 1
+
     def display_bar_charts(self):
         for chart in self.bar_charts:
             chart.show()
