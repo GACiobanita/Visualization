@@ -9,8 +9,8 @@ def main():
     file_receiver.acquire_output_path()
 
     lc_generator.acquire_csv_files(file_receiver.csv_files)
-    lc_generator.calculate_yearly_reviews()
-    lc_generator.calculate_app_review()
+    lc_generator.calculate_all_year_data()
+    lc_generator.calculate_yearly_app_data()
 
     lc_generator.save_bar_charts(file_receiver.output_folder_path)
 

@@ -7,13 +7,15 @@ class DataAdjustment(object):
     def __init__(self):
         self.STOP_WORDS = set(stopwords.words("english"))
 
-    def create_dict_from_tuple(self, tuples):
+    @staticmethod
+    def create_dict_from_tuple(tuples):
         data = {}
         for k, v in tuples:
             data[k] = int(v)
         return data
 
-    def remove_string_punctuation(self, data):
+    @staticmethod
+    def remove_string_punctuation(data):
         translator = str.maketrans('', '', string.punctuation)
         return data.translate(translator)
 

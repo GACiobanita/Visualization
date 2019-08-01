@@ -15,12 +15,15 @@ class LineChartGenerator(object):
         # in this form
         self.line_charts = []
         self.data_adjuster = DataAdjustment()
+        self.yearly_app_data = []
+        self.yearly_app_data_line_charts = []
+        self.all_year_data = []
+        self.all_year_data_line_charts = []
 
     def acquire_csv_files(self, csv_files):
         self.csv_files = csv_files
 
-    def calculate_yearly_reviews(self):
-        all_year_data = []
+    def calculate_all_year_data(self):
         for file in self.csv_files:
             data = pd.read_csv(file)
             found_monthly_reviews = sorted(data['Month'].value_counts().to_dict().items())
@@ -35,12 +38,14 @@ class LineChartGenerator(object):
 
             year_search = search('\d{4}', file)
             year = year_search.group(0) if year_search else 'XXXX'
-            all_year_data.append((year, found_monthly_reviews))
-        self.create_charts(all_year_data)
+            self.all_year_data.append((year, found_monthly_reviews))
 
-    def calculate_app_review(self):
+    def create_all_year_data_chart(self):
+        self.all_year_data_line_charts.append(self.create_charts(self.all_year_data))
+
+    def calculate_yearly_app_data(self):
         for file in self.csv_files:
-            yearly_app_data = []
+            yearly_data = []
             data = pd.read_csv(file)
             app_reviews = sorted(data['App_ID'].unique())
             app_count = 1
@@ -51,9 +56,13 @@ class LineChartGenerator(object):
                 for value in all_monthly_data:
                     for i in range(1, 13):
                         app_monthly_data.append((i, value.get(i, 0)))
-                yearly_app_data.append(("APP_" + str(app_count), app_monthly_data))
+                yearly_data.append(("APP_" + str(app_count), app_monthly_data))
                 app_count += 1
-            self.create_charts(yearly_app_data)
+            self.yearly_app_data.append(yearly_data)
+
+    def create_yearly_app_data_charts(self):
+        for yearly_app_data in self.yearly_app_data:
+            self.yearly_app_data_line_charts.append(self.create_charts(yearly_app_data))
 
     def create_charts(self, all_data):
 
@@ -105,9 +114,10 @@ class LineChartGenerator(object):
         self.create_legend(self.round_up(figure_size_value, -len(str(figure_size_value)) + 1))
 
         plt.tight_layout()
-        self.line_charts.append(fig)
+        return fig
 
-    def create_axis_points(self, data_container, x_axis_points, y_axis_points):
+    @staticmethod
+    def create_axis_points(data_container, x_axis_points, y_axis_points):
         x_count = 1
         y_count = 1
         for data in data_container:
@@ -118,7 +128,8 @@ class LineChartGenerator(object):
             x_count += 1
 
     # extract the keys from the data set to be used as labels in the graph
-    def create_axis_labels(self, data_container, x_axis_labels, y_axis_labels):
+    @staticmethod
+    def create_axis_labels(data_container, x_axis_labels, y_axis_labels):
         for key, value in data_container[0][-1]:
             x_axis_labels.append(calendar.month_name[int(key)])
         for data_name, data_list in data_container:
@@ -126,7 +137,8 @@ class LineChartGenerator(object):
         x_axis_labels.append('')
         y_axis_labels.append('')
 
-    def create_legend(self, max_value):
+    @staticmethod
+    def create_legend(max_value):
         plt.scatter([], [], c='r', s=200, marker='s', edgecolors='k', linewidths='2',
                     label="0 <-> " + str(max_value // 4))
         plt.scatter([], [], c='r', s=500, marker='s', edgecolors='k', linewidths='2',
@@ -138,7 +150,8 @@ class LineChartGenerator(object):
         plt.legend(loc='upper left', title='Review Count', title_fontsize=18, bbox_to_anchor=(1.04, 1), borderpad=1.5,
                    labelspacing=2.5, handletextpad=1.5, frameon=False)
 
-    def categorise_symbol_size(self, value, max_value):
+    @staticmethod
+    def categorise_symbol_size(value, max_value):
         size = 200
         difference = 300
         if value == 0:
@@ -152,7 +165,8 @@ class LineChartGenerator(object):
         else:
             return size + difference * 3
 
-    def get_maximum_data_value(self, all_data):
+    @staticmethod
+    def get_maximum_data_value(all_data):
         max_val = 0
         for data in all_data:
             for key, value in data[1]:
@@ -160,15 +174,20 @@ class LineChartGenerator(object):
                     max_val = value
         return max_val
 
-    def round_up(self, n, decimals=0):
+    @staticmethod
+    def round_up(n, decimals=0):
         multiplier = 10 ** decimals
         return int(math.ceil(n * multiplier) / multiplier)
 
-    def save_bar_charts(self, output_folder_path):
+    def save_all_year_charts(self, output_folder_path):
         count = 0
-        self.line_charts[0].savefig(
-            output_folder_path + "\\" + "fraud_apps_640_yearly_line_chart.png")
-        for chart in self.line_charts[1:]:
+        for chart in self.all_year_data_line_charts:
+            chart.savefig(output_folder_path + "\\" + "fraud_apps_640_yearly_line_chart" + str(count) + ".png")
+            count += 1
+
+    def save_yearly_app_charts(self, output_folder_path):
+        count = 0
+        for chart in self.yearly_app_data_line_charts:
             head, tail = os.path.split(self.csv_files[count])
             chart.savefig(output_folder_path + "\\" + tail[:-4] + "_line_chart.png")
             count += 1

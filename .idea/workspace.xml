@@ -2,162 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ced637e1-c500-451a-aed5-7eab72a3458e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/create_linecharts.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/emoticon_lexicon.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/sentiment_analyzer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/vader_lexicon.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_sentiment_analyzer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/bar_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/bar_chart_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/data_adjustments.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/data_adjustments.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/line_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/line_chart_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/create_barcharts.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/create_barcharts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/create_wordclouds.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/create_wordclouds.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/create_linecharts.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/create_linecharts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_line_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_line_chart_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_wordcloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_wordcloud.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/tests/test_line_chart_generator.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="238">
-                    <caret line="14" column="60" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="60" />
-                    <folding>
-                      <element signature="e#0#15#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/implementation/line_chart_generator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="169" column="67" selection-start-line="169" selection-start-column="67" selection-end-line="169" selection-end-column="67" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_wordcloud.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="67" column="94" selection-start-line="67" selection-start-column="94" selection-end-line="67" selection-end-column="94" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/implementation/word_cloud_generator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="53" selection-start-line="53" selection-end-line="53" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_barchart_generator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/create_linecharts.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/implementation/data_adjustments.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/create_barcharts.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="65" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
-              <folding>
-                <element signature="e#0#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/create_wordclouds.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/implementation/bar_chart_generator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="86" column="129" lean-forward="true" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="129" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_data_adjustments.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -167,104 +29,11 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>word_freq</find>
-      <find>word_clouds</find>
-      <find>input_folder_path</find>
-      <find>self.csv</find>
-      <find>wordcloud</find>
-      <find>self.groups</find>
-      <find>show_bar</find>
-      <find>DataAdjustment.</find>
-      <find>stop</find>
-      <find>y</find>
-      <find>colours</find>
-      <find>legend</find>
-      <find>type</find>
-      <find>self.all_data</find>
-      <find>self.bar</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/wordcloud_gen.py" />
-        <option value="$PROJECT_DIR$/Tests/test_wordcloud.py" />
-        <option value="$PROJECT_DIR$/implementation/wordcloud_gen.py" />
-        <option value="$PROJECT_DIR$/implementation/acquire_file.py" />
-        <option value="$PROJECT_DIR$/implementation/receive_file.py" />
-        <option value="$PROJECT_DIR$/implementation/file_receiver.py" />
-        <option value="$PROJECT_DIR$/tests/test_file_receiver.py" />
-        <option value="$PROJECT_DIR$/tests/test_barchart_generator.html" />
-        <option value="$PROJECT_DIR$/implementation/string_adjustment.py" />
-        <option value="$PROJECT_DIR$/tests/test_data_adjustments.py" />
-        <option value="$PROJECT_DIR$/implementation/wordcloud_generator.py" />
-        <option value="$PROJECT_DIR$/implementation/data_adjustments.py" />
-        <option value="$PROJECT_DIR$/tests/test_wordcloud.py" />
-        <option value="$PROJECT_DIR$/implementation/barchart_generator.py" />
-        <option value="$PROJECT_DIR$/implementation/__init__.py" />
-        <option value="$PROJECT_DIR$/main/__init__.py" />
-        <option value="$PROJECT_DIR$/tests/__init__.py" />
-        <option value="$PROJECT_DIR$/tests/test_barchart_generator.py" />
-        <option value="$PROJECT_DIR$/tests/test_line_chart_generator.py" />
-        <option value="$PROJECT_DIR$/implementation/bar_chart_generator.py" />
-        <option value="$PROJECT_DIR$/main/create_wordclouds.py" />
-        <option value="$PROJECT_DIR$/main/create_barcharts.py" />
-        <option value="$PROJECT_DIR$/main/create_linecharts.py" />
-        <option value="$PROJECT_DIR$/implementation/line_chart_generator.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
-  </component>
+  <component name="ProjectId" id="1OgoLDQ9gBmApbvPtqnzAdRedHa" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Visualization" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="implementation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -288,29 +57,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.create_linecharts">
-    <configuration name="create_linecharts" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Visualization" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/create_linecharts.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_calculate_monthly_reviews" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests for test_line_chart_generator.Test_LineChart.test_save_all_year_charts_invalid">
+    <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_calculate_all_year_data_valid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -320,11 +68,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_line_chart_generator.Test_LineChart.test_calculate_monthly_reviews&quot;" />
+      <option name="_new_target" value="&quot;test_line_chart_generator.Test_LineChart.test_calculate_all_year_data_valid&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_line_chart" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_all_year_data_chart_invalid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -334,11 +82,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_line_chart_generator.Test_LineChart.test_create_line_chart&quot;" />
+      <option name="_new_target" value="&quot;test_line_chart_generator.Test_LineChart.test_create_all_year_data_chart_invalid&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_line_plot_chart" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_all_year_data_chart_valid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -348,11 +96,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_line_chart_generator.Test_LineChart.test_create_line_plot_chart&quot;" />
+      <option name="_new_target" value="&quot;test_line_chart_generator.Test_LineChart.test_create_all_year_data_chart_valid&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_symbol_chart" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_save_all_year_charts_invalid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -362,17 +110,31 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_line_chart_generator.Test_LineChart.test_create_symbol_chart&quot;" />
+      <option name="_new_target" value="&quot;test_line_chart_generator.Test_LineChart.test_save_all_year_charts_invalid&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_save_all_year_charts_valid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Visualization" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_line_chart_generator.Test_LineChart.test_save_all_year_charts_valid&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.create_linecharts" />
-        <item itemvalue="Python tests.Unittests for test_line_chart_generator.Test_LineChart.test_create_symbol_chart" />
-        <item itemvalue="Python tests.Unittests for test_line_chart_generator.Test_LineChart.test_calculate_monthly_reviews" />
-        <item itemvalue="Python tests.Unittests for test_line_chart_generator.Test_LineChart.test_create_line_plot_chart" />
-        <item itemvalue="Python tests.Unittests for test_line_chart_generator.Test_LineChart.test_create_line_chart" />
+        <item itemvalue="Python tests.Unittests for test_line_chart_generator.Test_LineChart.test_save_all_year_charts_invalid" />
+        <item itemvalue="Python tests.Unittests for test_line_chart_generator.Test_LineChart.test_save_all_year_charts_valid" />
+        <item itemvalue="Python tests.Unittests for test_line_chart_generator.Test_LineChart.test_create_all_year_data_chart_invalid" />
+        <item itemvalue="Python tests.Unittests for test_line_chart_generator.Test_LineChart.test_create_all_year_data_chart_valid" />
+        <item itemvalue="Python tests.Unittests for test_line_chart_generator.Test_LineChart.test_calculate_all_year_data_valid" />
       </list>
     </recent_temporary>
   </component>
@@ -389,38 +151,6 @@
     </task>
     <servers />
   </component>
-  <component name="TestHistory">
-    <history-entry file="Unittests_for_test_line_chart_generator_Test_LineChart_test_calculate_monthly_reviews - 2019.07.28 at 16h 46m 53s.xml">
-      <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_calculate_monthly_reviews" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_line_chart_generator_Test_LineChart_test_calculate_monthly_reviews - 2019.07.28 at 16h 47m 01s.xml">
-      <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_calculate_monthly_reviews" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_line_chart_generator_Test_LineChart_test_calculate_monthly_reviews - 2019.07.28 at 16h 47m 59s.xml">
-      <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_calculate_monthly_reviews" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_line_chart_generator_Test_LineChart_test_create_symbol_chart - 2019.07.28 at 16h 48m 34s.xml">
-      <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_symbol_chart" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_line_chart_generator_Test_LineChart_test_create_symbol_chart - 2019.07.28 at 16h 53m 04s.xml">
-      <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_symbol_chart" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_line_chart_generator_Test_LineChart_test_create_symbol_chart - 2019.07.28 at 16h 58m 51s.xml">
-      <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_symbol_chart" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_line_chart_generator_Test_LineChart_test_create_symbol_chart - 2019.07.28 at 16h 59m 27s.xml">
-      <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_symbol_chart" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_line_chart_generator_Test_LineChart_test_calculate_monthly_reviews - 2019.07.28 at 17h 00m 33s.xml">
-      <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_calculate_monthly_reviews" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_line_chart_generator_Test_LineChart_test_create_symbol_chart - 2019.07.28 at 17h 00m 54s.xml">
-      <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_symbol_chart" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_test_line_chart_generator_Test_LineChart_test_create_symbol_chart - 2019.07.28 at 17h 11m 06s.xml">
-      <configuration name="Unittests for test_line_chart_generator.Test_LineChart.test_create_symbol_chart" configurationId="tests" />
-    </history-entry>
-  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -430,28 +160,18 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32827735" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48998946" visible="true" weight="0.32827735" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4947313" weight="0.39869988" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49925596" weight="0.32827735" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32827735" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.51001054" side_tool="true" visible="true" weight="0.32827735" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32827735" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -468,321 +188,5 @@
         <watch expression="self" />
       </configuration>
     </watches-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pandas/core/ops.py" />
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/wordcloud/wordcloud.py" />
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pandas/io/parsers.py" />
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pandas/core/generic.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/backends/_backend_tk.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_barchart_generator.html" />
-    <entry file="file://$PROJECT_DIR$/implementation/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test.png" />
-    <entry file="file://$PROJECT_DIR$/main/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="46" lean-forward="true" selection-start-line="1" selection-start-column="46" selection-end-line="1" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/_pylab_helpers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/figure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="1907" selection-start-line="1907" selection-end-line="1907" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27200">
-          <caret line="1600" selection-start-line="1600" selection-end-line="1600" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/abc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
-          <caret line="138" selection-start-line="138" selection-end-line="138" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/axes/_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35428">
-          <caret line="2110" selection-start-line="2110" selection-end-line="2110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/axis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25058">
-          <caret line="1488" selection-start-line="1488" selection-end-line="1488" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/units.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2720">
-          <caret line="165" selection-start-line="165" selection-end-line="165" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/calendar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/implementation/file_receiver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_file_receiver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="21" column="82" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="82" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/pandas/io/parsers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="626" selection-start-line="626" selection-end-line="626" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/pyplot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="493" selection-start-line="493" selection-end-line="493" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/contextlib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="120" selection-start-line="120" selection-end-line="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/cbook/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="1732" selection-start-line="1732" selection-end-line="1732" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/axes/_axes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="1664" selection-start-line="1664" selection-end-line="1664" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/unittest/case.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="675" selection-start-line="675" selection-end-line="675" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/unittest/suite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/unittest/runner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="175" selection-start-line="175" selection-end-line="175" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/teamcity/unittestpy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="307" selection-start-line="307" selection-end-line="307" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/unittest/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/_jb_unittest_runner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/pandas/core/indexes/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="2658" selection-start-line="2658" selection-end-line="2658" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/pandas/core/frame.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="2926" selection-start-line="2926" selection-end-line="2926" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_wordcloud.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="67" column="94" selection-start-line="67" selection-start-column="94" selection-end-line="67" selection-end-column="94" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_data_adjustments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_barchart_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/implementation/data_adjustments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_line_chart_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="60" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/implementation/word_cloud_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/create_wordclouds.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="65" selection-start-line="17" selection-start-column="65" selection-end-line="17" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/create_linecharts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/create_barcharts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="65" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/implementation/bar_chart_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="86" column="129" lean-forward="true" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="129" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/implementation/line_chart_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="169" column="67" selection-start-line="169" selection-start-column="67" selection-end-line="169" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

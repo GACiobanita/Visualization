@@ -48,20 +48,17 @@ class Test_WordCloud(unittest.TestCase):
         self.wordcloud.word_freqs.append(test_frame)
         self.wordcloud.create_wordcloud()
         self.assertNotEqual(1, len(self.wordcloud.word_clouds))
-        print(len(self.wordcloud.word_clouds))
         self.wordcloud.display_word_cloud()
 
     def test_save_word_cloud_valid(self):
-        self.file_receiver.acquire_input_path()
-        self.wordcloud.acquire_csv_files(self.file_receiver.csv_files)
+        self.wordcloud.acquire_csv_files(['D:\Google_Play_Fraud_Benign_Malware\Fraud\Test\fraud_apps_640_review_info_final_2012_top_10.csv'])
         self.wordcloud.create_dictionaries()
         self.wordcloud.create_wordcloud()
         self.assertNotEqual(0, len(self.wordcloud.word_clouds))
         self.wordcloud.save_word_cloud("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
 
     def test_save_word_cloud_invalid(self):
-        self.file_receiver.acquire_input_path()
-        self.wordcloud.acquire_csv_files(self.file_receiver.csv_files)
+        self.wordcloud.acquire_csv_files(['D:\Google_Play_Fraud_Benign_Malware\Fraud\Test\fraud_apps_640_review_info_final_2012_top_10.csv'])
         self.wordcloud.create_dictionaries()
         self.wordcloud.create_wordcloud()
         self.assertNotEqual(0, len(self.wordcloud.word_clouds))
