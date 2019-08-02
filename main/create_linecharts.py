@@ -11,12 +11,15 @@ def main():
     lc_generator.acquire_csv_files(file_receiver.csv_files)
     lc_generator.calculate_all_year_data()
     lc_generator.calculate_yearly_app_data()
+    lc_generator.create_all_year_data_chart()
+    lc_generator.create_all_year_data_chart()
 
-    lc_generator.save_bar_charts(file_receiver.output_folder_path)
+    lc_generator.save_yearly_app_charts(file_receiver.output_folder_path)
+    lc_generator.save_all_year_charts(file_receiver.output_folder_path)
 
-    # display word clouds
+    # display line charts
     while True:
-        input_text = input("Would you like to see the word clouds? (Y/N) :")
+        input_text = input("Would you like to see the line charts? (Y/N) :")
         if input_text == 'Y':
             lc_generator.display_bar_charts()
             break

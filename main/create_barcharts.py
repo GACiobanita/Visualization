@@ -9,14 +9,14 @@ def main():
     file_receiver.acquire_output_path()
 
     bc_generator.acquire_csv_files(file_receiver.csv_files)
-    bc_generator.barchart_generator.calculate_text_length()
-    bc_generator.barchart_generator.create_overall_bar_charts()
+    bc_generator.calculate_text_length()
+    bc_generator.create_overall_bar_charts()
 
     bc_generator.save_bar_charts(file_receiver.output_folder_path)
 
-    # display word clouds
+    # display bar charts
     while True:
-        input_text = input("Would you like to see the word clouds? (Y/N) :")
+        input_text = input("Would you like to see the bar charts? (Y/N) :")
         if input_text == 'Y':
             bc_generator.display_bar_charts()
             break

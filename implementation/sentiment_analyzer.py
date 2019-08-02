@@ -26,6 +26,10 @@ class SentimentAnalyzer:
         self.negation_words = {}
         self.words = {}
         self.emoticons = {}
+        self.positive_review_count = 0
+        self.negative_review_count = 0
+        self.neutral_review_count = 0
+        self.star_count = {5.0: 0, 4.0: 0, 3.0: 0, 2.0: 0, 1.0: 0}
 
     def make_vader_lexicon(self):
         word_list = {}
@@ -55,7 +59,9 @@ class SentimentAnalyzer:
         word_dict = {}
         for key, value in init_dict.items():
             lowered_key = str(key).lower()
+            # exclude words that have no sentiment value in the vader lexicon
             if lowered_key in self.vader_lexicon:
+                # check in a separate emoticon lexicon if the key is an emoticon :D, ;) ......
                 if key in self.emoticon_lexicon:
                     emoticon_dict[key] = value
                 else:
@@ -66,29 +72,49 @@ class SentimentAnalyzer:
     def acquire_csv_files(self, csv_files):
         self.csv_files = csv_files
 
-    def calculate_scores_for_reviews(self):
+    def create_data_frames_with_result_columns(self):
         for file in self.csv_files:
             data = pd.read_csv(file)
-            csv_columns = list(data.columns)
-            csv_columns.append('Neg')
-            csv_columns.append('Neu')
-            csv_columns.append('Pos')
-            csv_columns.append('Compound')
-            csv_data = pd.DataFrame(columns=csv_columns)
+            csv_data = self.create_csv_dataframe(existing_csv_columns=data.columns)
             for index, row in data.iterrows():
                 text = str(row['Text'])
                 result = self.sentiment_analyzer_scores(text)
-                new_csv_row = [row['User'], row['Day'], row['Month'], row['Year'], row['Title'], row['Text'],
-                               row['Rating'],
-                               row['App_ID'],
-                               result[1]['neg'], result[1]['neu'], result[1]['pos'], result[1]['compound']]
-                csv_data.loc[len(csv_data)] = new_csv_row
+                self.update_csv_data(csv_data=csv_data, row=row, result=result)
             self.sentiment_dataframes.append(csv_data)
+
+    @staticmethod
+    def create_csv_dataframe(existing_csv_columns):
+        csv_columns = list(existing_csv_columns)
+        csv_columns.append('Neg')
+        csv_columns.append('Neu')
+        csv_columns.append('Pos')
+        csv_columns.append('Compound')
+        csv_data = pd.DataFrame(columns=csv_columns)
+        return csv_data
+
+    @staticmethod
+    def update_csv_data(csv_data, row, result):
+        new_csv_row = [row['User'], row['Day'], row['Month'], row['Year'], row['Title'], row['Text'],
+                       row['Rating'],
+                       row['App_ID'],
+                       result[1]['neg'], result[1]['neu'], result[1]['pos'], result[1]['compound']]
+        csv_data.loc[len(csv_data)] = new_csv_row
 
     def save_sentiment_csv_file(self, output_folder_path):
         count = 0
-        for dataframe in self.sentiment_dataframes:
+        for data_frame in self.sentiment_dataframes:
             head, tail = os.path.split(self.csv_files[count])
-            dataframe.to_csv(output_folder_path + "\\" + tail[:-4] + "_including_sentiment_score.csv", index=None,
-                             header=True)
+            data_frame.to_csv(output_folder_path + "\\" + tail[:-4] + "_including_sentiment_score.csv", index=None,
+                              header=True)
             count += 1
+
+    def sentiment_classification(self, compound):
+        if compound >= 0.05:
+            self.positive_review_count += 1
+        elif compound <= -0.05:
+            self.negative_review_count += 1
+        else:
+            self.neutral_review_count += 1
+
+    def review_score_classification(self, score):
+        self.star_count[score] += 1
