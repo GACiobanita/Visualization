@@ -34,7 +34,7 @@ class Test_SentimentAnalyzer(unittest.TestCase):
     def test_calculate_scores_for_reviews_valid(self):
         self.sentiment_analyzer.acquire_csv_files(
             ['D:\\Google_Play_Fraud_Benign_Malware\\Fraud\Test\\fraud_apps_640_review_info_final_2012_top_10.csv'])
-        self.sentiment_analyzer.calculate_scores_for_reviews()
+        self.sentiment_analyzer.create_data_frames_with_result_columns()
         self.sentiment_analyzer.save_sentiment_csv_file('D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test')
         self.assertNotEqual(0, len(self.sentiment_analyzer.sentiment_dataframes))
 
@@ -42,7 +42,7 @@ class Test_SentimentAnalyzer(unittest.TestCase):
     def test_calculate_scores_for_reviews_invalid(self):
         self.sentiment_analyzer.acquire_csv_files([
             'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\Test\\fraud_apps_640_review_info_final_2014_top_10_no_title_column.csv'])
-        self.sentiment_analyzer.calculate_scores_for_reviews()
+        self.sentiment_analyzer.create_data_frames_with_result_columns()
         self.sentiment_analyzer.save_sentiment_csv_file('D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test')
         self.assertNotEqual(0, len(self.sentiment_analyzer.sentiment_dataframes))
 
