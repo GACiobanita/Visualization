@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from re import search
 from .data_adjustments import DataAdjustment
-import calendar
 import math
 import os
 
@@ -36,8 +35,7 @@ class LineChartGenerator(object):
                 if found is False:
                     found_monthly_reviews.append((i, 0))
 
-            year_search = search('\d{4}', file)
-            year = year_search.group(0) if year_search else 'XXXX'
+            year = self.data_adjuster.get_year_from_string(file)
             self.all_year_data.append((year, found_monthly_reviews))
 
     def create_all_year_data_chart(self):
@@ -128,10 +126,9 @@ class LineChartGenerator(object):
             x_count += 1
 
     # extract the keys from the data set to be used as labels in the graph
-    @staticmethod
-    def create_axis_labels(data_container, x_axis_labels, y_axis_labels):
+    def create_axis_labels(self, data_container, x_axis_labels, y_axis_labels):
         for key, value in data_container[0][-1]:
-            x_axis_labels.append(calendar.month_name[int(key)])
+            x_axis_labels.append(self.data_adjuster.get_month_from_int(key))
         for data_name, data_list in data_container:
             y_axis_labels.append(data_name)
         x_axis_labels.append('')

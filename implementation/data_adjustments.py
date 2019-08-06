@@ -1,13 +1,40 @@
 import string
 import pandas as pd
 import os
+import calendar
+import re
 from nltk.corpus import stopwords
+from inspect import getsourcefile
 
 
 class DataAdjustment(object):
 
-    def __init__(self):
+    def __init__(self, emoticon_lexicon='emoticon_lexicon.txt', vader_lexicon='vader_lexicon.txt'):
+        module_file_path = os.path.abspath(getsourcefile(lambda: 0))
+        self.emoticon_lexicon_file_path = os.path.join(os.path.dirname(module_file_path), emoticon_lexicon)
+        self.vader_lexicon_file_path = os.path.join(os.path.dirname(module_file_path), vader_lexicon)
+
+        self.emoticon_lexicon = self.make_emoticon_lexicon()
+        self.vader_lexicon = self.make_vader_lexicon()
+
         self.STOP_WORDS = set(stopwords.words("english"))
+
+    def make_vader_lexicon(self):
+        word_list = {}
+        with open(self.vader_lexicon_file_path, encoding='utf-8') as f:
+            file = f.read()
+        for line in file.split('\n'):
+            (word, measure) = line.strip().split('\t')[0:2]
+            word_list[word] = float(measure)
+        return word_list
+
+    def make_emoticon_lexicon(self):
+        word_list = list()
+        with open(self.emoticon_lexicon_file_path, encoding='utf-8') as f:
+            file = f.read()
+        for line in file.split('\n'):
+            word_list.append(line)
+        return word_list
 
     @staticmethod
     def create_dict_from_tuple(tuples):
@@ -39,3 +66,32 @@ class DataAdjustment(object):
         head, tail = os.path.split(file_name)
         data.to_csv(output_folder_path + "\\" + tail, index=None,
                     header=True)
+
+    @staticmethod
+    def merge_dictionaries(dict1, dict2):
+        dict3 = {**dict1, **dict2}
+        return dict3
+
+    def separate_emoticons_and_words(self, init_dict):
+        emoticon_dict = {}
+        word_dict = {}
+        for key, value in init_dict.items():
+            lowered_key = str(key).lower()
+            # exclude words that have no sentiment value in the vader lexicon
+            if lowered_key in self.vader_lexicon:
+                # check in a separate emoticon lexicon if the key is an emoticon :D, ;) ......
+                if key in self.emoticon_lexicon:
+                    emoticon_dict[key] = value
+                else:
+                    word_dict[lowered_key] = value
+        return emoticon_dict, word_dict
+
+    @staticmethod
+    def get_month_from_int(number):
+        return calendar.month_name[int(number)]
+
+    @staticmethod
+    def get_year_from_string(str):
+        year_search = re.search('\d{4}', str)
+        year = year_search.group(0) if year_search else 'XXXX'
+        return year

@@ -11,25 +11,25 @@ class Test_SentimentAnalyzer(unittest.TestCase):
 
     def test_sentiment_analyzer_scores_valid(self):
         self.assertNotEqual({'neg': 0.0, 'neu': 0.0, 'pos': 0.0, 'compound': 0.0},
-                            self.sentiment_analyzer.sentiment_analyzer_scores(
+                            self.sentiment_analyzer.calculate_text_score_and_word_appearance(
                                 "I ordered some things but they were to small I asked if I could send them back for size changes. They told me I would have to repay for shipping to and from...WTF like whyyyy thoooo I only wanted different sizes not even a refund. I asked if it was a number where I could call to speak with someone on a direct line..Of course they didn't say anything back & claims to have refunded my money which was a LIE!!! I will not and advice others to not order from them bcuz their services lack terribly")[
                                 1])
         self.assertNotEqual({'neg': 0.0, 'neu': 0.0, 'pos': 0.0, 'compound': 0.0},
-                            self.sentiment_analyzer.sentiment_analyzer_scores(
+                            self.sentiment_analyzer.calculate_text_score_and_word_appearance(
                                 "After installing the application i realized i wasn't really using it much. So i requested the Crownit team to delete my account as i don't want my data (Phone number etc.) to remain with them. I got a reply saying i can unistall the app if i wanted to but they won't delete my account. I mean WTF?")[
                                 1])
         self.assertNotEqual({'neg': 0.0, 'neu': 0.0, 'pos': 0.0, 'compound': 0.0},
-                            self.sentiment_analyzer.sentiment_analyzer_scores(
+                            self.sentiment_analyzer.calculate_text_score_and_word_appearance(
                                 "Very nice app to use in my new android. Love to use it. :)")[
                                 1])
         self.assertNotEqual({'neg': 0.0, 'neu': 0.0, 'pos': 0.0, 'compound': 0.0},
-                            self.sentiment_analyzer.sentiment_analyzer_scores(
+                            self.sentiment_analyzer.calculate_text_score_and_word_appearance(
                                 "XD :)")[
                                 1])
 
     def test_sentiment_analyzer_scores_invalid(self):
         self.assertNotEqual({'neg': 0.0, 'neu': 0.0, 'pos': 0.0, 'compound': 0.0},
-                            self.sentiment_analyzer.sentiment_analyzer_scores("")[1])
+                            self.sentiment_analyzer.calculate_text_score_and_word_appearance("")[1])
 
     def test_calculate_scores_for_reviews_valid(self):
         self.sentiment_analyzer.acquire_csv_files(
