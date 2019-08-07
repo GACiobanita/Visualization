@@ -4,6 +4,8 @@ import os
 import calendar
 import re
 from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk import FreqDist
 from inspect import getsourcefile
 
 
@@ -14,12 +16,12 @@ class DataAdjustment(object):
         self.emoticon_lexicon_file_path = os.path.join(os.path.dirname(module_file_path), emoticon_lexicon)
         self.vader_lexicon_file_path = os.path.join(os.path.dirname(module_file_path), vader_lexicon)
 
-        self.emoticon_lexicon = self.make_emoticon_lexicon()
-        self.vader_lexicon = self.make_vader_lexicon()
+        self.emoticon_lexicon = self.get_emoticon_lexicon()
+        self.vader_lexicon = self.get_vader_lexicon()
 
         self.STOP_WORDS = set(stopwords.words("english"))
 
-    def make_vader_lexicon(self):
+    def get_vader_lexicon(self):
         word_list = {}
         with open(self.vader_lexicon_file_path, encoding='utf-8') as f:
             file = f.read()
@@ -28,7 +30,7 @@ class DataAdjustment(object):
             word_list[word] = float(measure)
         return word_list
 
-    def make_emoticon_lexicon(self):
+    def get_emoticon_lexicon(self):
         word_list = list()
         with open(self.emoticon_lexicon_file_path, encoding='utf-8') as f:
             file = f.read()
@@ -37,11 +39,19 @@ class DataAdjustment(object):
         return word_list
 
     @staticmethod
-    def create_dict_from_tuple(tuples):
+    def get_dict_from_tuple(tuples):
         data = {}
         for k, v in tuples:
             data[k] = int(v)
         return data
+
+    @staticmethod
+    def get_string_frequency_distribution(strings_container):
+        return FreqDist(strings_container)
+
+    @staticmethod
+    def tokenize_words(words_string):
+        return word_tokenize(words_string)
 
     @staticmethod
     def remove_string_punctuation(data):
@@ -55,11 +65,12 @@ class DataAdjustment(object):
                 data_no_sw.append(word)
         return data_no_sw
 
-    def remove_duplicate_rows_from_csv(self, csv_files, output_file_path):
+    @staticmethod
+    def remove_duplicate_rows_from_csv(csv_files, output_file_path):
         for csv in csv_files:
             data = pd.read_csv(csv)
             data = data.drop_duplicates()
-            self.save_csv_file(csv, data, output_file_path)
+        return csv_files, data, output_file_path
 
     @staticmethod
     def save_csv_file(file_name, data, output_folder_path):
@@ -85,6 +96,9 @@ class DataAdjustment(object):
                 else:
                     word_dict[lowered_key] = value
         return emoticon_dict, word_dict
+
+    def extract_valence_from_lexicon(self, item):
+        return self.vader_lexicon[item.lower()]
 
     @staticmethod
     def get_month_from_int(number):

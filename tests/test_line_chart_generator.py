@@ -12,14 +12,14 @@ class Test_LineChart(unittest.TestCase):
     def test_calculate_monthly_app_reviews_valid(self):
         self.line_chart_generator.acquire_csv_files(
             ['D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\fraud_apps_640_review_info_final_2014_top_10.csv'])
-        self.line_chart_generator.calculate_yearly_app_data()
+        self.line_chart_generator.calculate_reviews_by_identifiable_individuals_per_app()
 
     # missing data column - month
     def test_calculate_monthly_app_reviews_invalid(self):
         self.line_chart_generator.acquire_csv_files(
             [
                 'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\fraud_apps_640_review_info_final_2014_top_10_no_month_column.csv'])
-        self.line_chart_generator.calculate_yearly_app_data()
+        self.line_chart_generator.calculate_reviews_by_identifiable_individuals_per_app()
 
     def test_create_charts_valid(self):
         self.line_chart_generator.create_charts([('APP_1',
@@ -430,13 +430,13 @@ class Test_LineChart(unittest.TestCase):
     def test_calculate_all_year_data_valid(self):
         self.line_chart_generator.acquire_csv_files(
             ['D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\fraud_apps_640_review_info_final_2014_top_10.csv'])
-        self.line_chart_generator.calculate_all_year_data()
+        self.line_chart_generator.calculate_overall_reviews_by_identifiable_individuals()
 
     def test_calculate_all_year_data_invalid(self):
         self.line_chart_generator.acquire_csv_files(
             [
                 'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\fraud_apps_640_review_info_final_2014_top_10_no_month_column.csv'])
-        self.line_chart_generator.calculate_all_year_data()
+        self.line_chart_generator.calculate_overall_reviews_by_identifiable_individuals()
 
     def test_create_all_year_data_chart_valid(self):
         self.line_chart_generator.all_year_data = [('2014', [(1, 655), (2, 653), (3, 778), (4, 783), (5, 829), (6, 883),
@@ -454,8 +454,8 @@ class Test_LineChart(unittest.TestCase):
     def test_save_all_year_charts_valid(self):
         self.file_receiver.acquire_input_path()
         self.line_chart_generator.acquire_csv_files(self.file_receiver.csv_files)
-        self.line_chart_generator.calculate_all_year_data()
-        self.line_chart_generator.calculate_yearly_app_data()
+        self.line_chart_generator.calculate_overall_reviews_by_identifiable_individuals()
+        self.line_chart_generator.calculate_reviews_by_identifiable_individuals_per_app()
         self.line_chart_generator.create_all_year_data_chart()
         self.line_chart_generator.create_yearly_app_data_charts()
         self.line_chart_generator.save_all_year_charts('D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test')
@@ -465,8 +465,8 @@ class Test_LineChart(unittest.TestCase):
     def test_save_all_year_charts_invalid(self):
         self.file_receiver.acquire_input_path()
         self.line_chart_generator.acquire_csv_files(self.file_receiver.csv_files)
-        self.line_chart_generator.calculate_all_year_data()
-        self.line_chart_generator.calculate_yearly_app_data()
+        self.line_chart_generator.calculate_overall_reviews_by_identifiable_individuals()
+        self.line_chart_generator.calculate_reviews_by_identifiable_individuals_per_app()
         self.line_chart_generator.create_all_year_data_chart()
         self.line_chart_generator.create_yearly_app_data_charts()
         self.line_chart_generator.save_all_year_charts('')

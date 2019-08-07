@@ -1,15 +1,17 @@
 import matplotlib.pyplot as plt
-import matplotlib.lines as Line2D
 import pandas as pd
 import os
 from implementation.data_adjustments import DataAdjustment
-from implementation.sentiment_analyzer import SentimentAnalyzer
 
 
+# data of the pie chart will be separated in sections
+# each section presents a cut in the pie chart
 class ChartSection(object):
 
     def __init__(self):
+        # the total count of reviews for the section
         self.section_count = 0
+        # allocate each review based on the review's score
         self.section_star_count = {5.0: 0, 4.0: 0, 3.0: 0, 2.0: 0, 1.0: 0}
 
     def update_section_count(self):
@@ -23,6 +25,9 @@ class ChartSection(object):
             self.section_star_count)
 
 
+# all the charts in the proposed pie charts
+# each pie chart will be divided into 3 section: positive, negative and neutral
+# each section with it's review counts and review allocation based on their score
 class ChartData(object):
 
     def __init__(self):
@@ -30,6 +35,8 @@ class ChartData(object):
         self.negative_chart_section = ChartSection()
         self.neutral_chart_section = ChartSection()
 
+    # compound value is calculated by VADER , and the number that it is compared against
+    # is the recommended number to use on their Github repository for sentiment allocation of text
     def sentiment_and_rating_classification(self, compound, key):
         if float(compound) >= 0.05:
             self.positive_chart_section.update_section_count()
@@ -52,10 +59,11 @@ class PieChartGenerator(object):
         self.data_adjuster = DataAdjustment()
 
         self.csv_files = []
-        self.sentiment_analyzer = SentimentAnalyzer()
         self.basic_charts = []
         self.nested_charts = []
         self.chart_data = []
+
+        self.CENTER_TEXT_FONT_SIZE = 30
 
     def acquire_csv_files(self, csv_files):
         self.csv_files = csv_files
@@ -65,21 +73,22 @@ class PieChartGenerator(object):
             chart_data = ChartData()
             data = pd.read_csv(file)
             for index, row in data.iterrows():
+                # from the csv file, classify ech review based on compound and rating
                 chart_data.sentiment_and_rating_classification(row['Compound'], row['Rating'])
             self.chart_data.append((self.data_adjuster.get_year_from_string(file), chart_data))
 
+    # basic pie chart contains the positive, negative and neutral slices
     def create_basic_pie_chart(self):
         for year, chart_data in self.chart_data:
             labels = 'Positive', 'Negative', 'Neutral'
             sizes = [chart_data.positive_chart_section.section_count,
                      chart_data.negative_chart_section.section_count,
                      chart_data.neutral_chart_section.section_count]
-            explode = (0, 0, 0)  # explode means removing a part from the pie chart to make it more pronounced
 
             positive_colour, negative_colour, neutral_colour = [plt.cm.Greens, plt.cm.Reds, plt.cm.Greys]
 
             fig, ax = plt.subplots(figsize=(12, 8))
-            ax.pie(sizes, explode=explode, autopct='%1.1f%%', startangle=0,
+            ax.pie(sizes, autopct='%1.1f%%',
                    colors=[positive_colour(0.6), negative_colour(0.6), neutral_colour(0.6)], textprops=dict(color="w"))
             plt.title('Distribution of sentiment in ' + year, fontsize=30, pad=10)
             self.create_legend(labels)
@@ -96,19 +105,23 @@ class PieChartGenerator(object):
             chart.savefig(output_folder_path + "\\" + tail[:-4] + "_basic_pie_chart.png")
             count += 1
 
+    # creates a nested pie chart in the shape of a donut
     def create_nested_pie_chart(self):
         for year, chart_data in self.chart_data:
             groups_size = [chart_data.positive_chart_section.section_count,
                            chart_data.negative_chart_section.section_count,
                            chart_data.neutral_chart_section.section_count]
+
+            # total to be displayed in the empty space of the "donut"
             total = chart_data.positive_chart_section.section_count + chart_data.negative_chart_section.section_count + chart_data.neutral_chart_section.section_count
 
+            # the outer labels and inner labels respectively
             group_labels = self.create_group_percentage_labels(chart_data, total)
             subgroup_labels = self.create_subgroup_labels(chart_data)
 
-            positive_size = self.create_subgroup_sizes(chart_data.positive_chart_section)
-            negative_size = self.create_subgroup_sizes(chart_data.negative_chart_section)
-            neutral_size = self.create_subgroup_sizes(chart_data.neutral_chart_section)
+            positive_size = self.get_section_size(chart_data.positive_chart_section)
+            negative_size = self.get_section_size(chart_data.negative_chart_section)
+            neutral_size = self.get_section_size(chart_data.neutral_chart_section)
 
             subgroup_sizes = self.create_overall_subgroup_size_list(positive_size, negative_size, neutral_size)
 
@@ -137,12 +150,17 @@ class PieChartGenerator(object):
                 label.set_horizontalalignment('center')
                 label.set_fontsize(12)
 
-            size = fig.get_size_inches() * fig.dpi
-            ax.annotate('Total', xy=(size[0] / 2 + 30 / 2, size[1] / 2 + 30), xycoords='figure pixels', fontsize=30,
+            size = fig.get_size_inches() * fig.dpi  # get a vector of X and Y sizes, in pixels
+            ax.annotate('Total',
+                        xy=(size[0] / 2 + self.CENTER_TEXT_FONT_SIZE / 2, size[1] / 2 + self.CENTER_TEXT_FONT_SIZE),
+                        xycoords='figure pixels', fontsize=self.CENTER_TEXT_FONT_SIZE,
                         horizontalalignment='center', verticalalignment='bottom')
-            ax.annotate('Reviews:', xy=(size[0] / 2 + 30 / 2, size[1] / 2), xycoords='figure pixels', fontsize=30,
+            ax.annotate('Reviews:', xy=(size[0] / 2 + self.CENTER_TEXT_FONT_SIZE / 2, size[1] / 2),
+                        xycoords='figure pixels', fontsize=self.CENTER_TEXT_FONT_SIZE,
                         horizontalalignment='center', verticalalignment='center')
-            ax.annotate(str(total), xy=(size[0] / 2 + 30 / 2, size[1] / 2 - 30), xycoords='figure pixels', fontsize=30,
+            ax.annotate(str(total),
+                        xy=(size[0] / 2 + self.CENTER_TEXT_FONT_SIZE / 2, size[1] / 2 - self.CENTER_TEXT_FONT_SIZE),
+                        xycoords='figure pixels', fontsize=self.CENTER_TEXT_FONT_SIZE,
                         horizontalalignment='center', verticalalignment='top')
 
             plt.setp(inside_ring, width=0.4, edgecolor='white')
@@ -162,7 +180,7 @@ class PieChartGenerator(object):
             count += 1
 
     @staticmethod
-    def create_subgroup_sizes(chart_section):
+    def get_section_size(chart_section):
         size_list = list()
         for item in chart_section.section_star_count:
             if chart_section.section_star_count[item] is not 0:
@@ -224,5 +242,8 @@ class PieChartGenerator(object):
         return overall_colour_list
 
     @staticmethod
+    # simply creates a legend, in the top right corner of the visualization
+    # with the colours used in the pie chart for description
+    # (0,0) is bottom left, (1,1) is top rights
     def create_legend(labels):
         plt.legend(labels, loc=(0.75, 0.75), title='Sentiment Legend:', title_fontsize=16, frameon=False, fontsize=12)

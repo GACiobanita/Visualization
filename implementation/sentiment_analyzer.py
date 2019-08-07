@@ -4,6 +4,7 @@ import pandas as pd
 import os
 
 
+# interface to access and modify the VADER sentiment analyzer
 class SentimentAnalyzer(object):
 
     def __init__(self):
@@ -12,8 +13,10 @@ class SentimentAnalyzer(object):
 
         self.data_adjuster = DataAdjustment()
 
-        self.sentiment_dataframes = []
+        self.sentiment_data_frames = []
 
+    # modified the SentimentIntensityAnalyzer to return all words used and emoticons alongside the initial
+    # score return
     def calculate_text_score_and_word_appearance(self, sentence):
         score, negation_usage, word_and_emoticon_usage = self.analyzer.polarity_scores(sentence)
         return sentence, score, negation_usage, word_and_emoticon_usage
@@ -21,18 +24,20 @@ class SentimentAnalyzer(object):
     def acquire_csv_files(self, csv_files):
         self.csv_files = csv_files
 
+    # used to create csv files with Compound , Positive, Negative and Neutral columns
+    # containing scores from the VADER analyzer
     def create_data_frames_with_result_columns(self):
         for file in self.csv_files:
             data = pd.read_csv(file)
-            csv_data = self.create_csv_dataframe(existing_csv_columns=data.columns)
+            csv_data = self.create_csv_data_frame(existing_csv_columns=data.columns)
             for index, row in data.iterrows():
                 text = str(row['Text'])
                 result = self.calculate_text_score_and_word_appearance(text)
                 self.update_csv_data(csv_data=csv_data, row=row, result=result)
-            self.sentiment_dataframes.append(csv_data)
+            self.sentiment_data_frames.append(csv_data)
 
     @staticmethod
-    def create_csv_dataframe(existing_csv_columns):
+    def create_csv_data_frame(existing_csv_columns):
         csv_columns = list(existing_csv_columns)
         csv_columns.append('Neg')
         csv_columns.append('Neu')
@@ -51,7 +56,7 @@ class SentimentAnalyzer(object):
 
     def save_sentiment_csv_file(self, output_folder_path):
         count = 0
-        for data_frame in self.sentiment_dataframes:
+        for data_frame in self.sentiment_data_frames:
             head, tail = os.path.split(self.csv_files[count])
             data_frame.to_csv(output_folder_path + "\\" + tail[:-4] + "_including_sentiment_score.csv", index=None,
                               header=True)

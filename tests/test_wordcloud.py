@@ -25,42 +25,42 @@ class Test_WordCloud(unittest.TestCase):
         self.wordcloud.acquire_csv_files(self.file_receiver.csv_files)
         self.wordcloud.create_dictionaries()
         self.assertNotEqual(0, len(self.wordcloud.csv_files))
-        self.assertNotEqual(0, len(self.wordcloud.word_freqs))
+        self.assertNotEqual(0, len(self.wordcloud.word_frequency))
 
     def test_create_dictionaries_invalid(self):
         self.file_receiver.acquire_input_path()
         self.wordcloud.acquire_csv_files(self.file_receiver.csv_files)
         self.wordcloud.create_dictionaries()
         self.assertEqual(0, len(self.wordcloud.csv_files))
-        self.assertEqual(0, len(self.wordcloud.word_freqs))
+        self.assertEqual(0, len(self.wordcloud.word_frequency))
 
     def test_create_word_cloud_valid(self):
         test_data = {'Word': ["nice", "very nice"], 'Frequency': [100, 200]}
         test_frame = pd.DataFrame(test_data, columns=['Word', 'Frequency'])
-        self.wordcloud.word_freqs.append(test_frame)
-        self.wordcloud.create_wordcloud()
+        self.wordcloud.word_frequency.append(test_frame)
+        self.wordcloud.create_word_cloud()
         self.assertNotEqual(0, len(self.wordcloud.word_clouds))
         self.wordcloud.display_word_cloud()
 
     def test_create_word_cloud_invalid(self):
         test_data = {'Word': ["nice", "very nice"], 'Frequency': [100, 200]}
         test_frame = pd.DataFrame(test_data, columns=['Word', 'Frequency'])
-        self.wordcloud.word_freqs.append(test_frame)
-        self.wordcloud.create_wordcloud()
+        self.wordcloud.word_frequency.append(test_frame)
+        self.wordcloud.create_word_cloud()
         self.assertNotEqual(1, len(self.wordcloud.word_clouds))
         self.wordcloud.display_word_cloud()
 
     def test_save_word_cloud_valid(self):
         self.wordcloud.acquire_csv_files(['D:\Google_Play_Fraud_Benign_Malware\Fraud\Test\fraud_apps_640_review_info_final_2012_top_10.csv'])
         self.wordcloud.create_dictionaries()
-        self.wordcloud.create_wordcloud()
+        self.wordcloud.create_word_cloud()
         self.assertNotEqual(0, len(self.wordcloud.word_clouds))
         self.wordcloud.save_word_cloud("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
 
     def test_save_word_cloud_invalid(self):
         self.wordcloud.acquire_csv_files(['D:\Google_Play_Fraud_Benign_Malware\Fraud\Test\fraud_apps_640_review_info_final_2012_top_10.csv'])
         self.wordcloud.create_dictionaries()
-        self.wordcloud.create_wordcloud()
+        self.wordcloud.create_word_cloud()
         self.assertNotEqual(0, len(self.wordcloud.word_clouds))
         self.wordcloud.save_word_cloud("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
 

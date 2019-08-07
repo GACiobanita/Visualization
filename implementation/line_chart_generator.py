@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-from re import search
 from .data_adjustments import DataAdjustment
 import math
 import os
@@ -10,8 +9,6 @@ class LineChartGenerator(object):
 
     def __init__(self):
         self.csv_files = []
-        # a list containing lists which are composed of all of the months of the year and the review count for each month
-        # in this form
         self.line_charts = []
         self.data_adjuster = DataAdjustment()
         self.yearly_app_data = []
@@ -19,12 +16,18 @@ class LineChartGenerator(object):
         self.all_year_data = []
         self.all_year_data_line_charts = []
 
+        # chart creation variables
+        self.SMALLEST_SYMBOL_SIZE = 200
+        self.SYMBOL_SIZE_DIFFERENCE = 300
+        self.NUMBER_OF_BUCKETS = 4
+
     def acquire_csv_files(self, csv_files):
         self.csv_files = csv_files
 
-    def calculate_all_year_data(self):
+    def calculate_overall_reviews_by_identifiable_individuals(self):
         for file in self.csv_files:
             data = pd.read_csv(file)
+            # find the total number of review per month for all apps
             found_monthly_reviews = sorted(data['Month'].value_counts().to_dict().items())
 
             for i in range(1, 13):
@@ -41,7 +44,7 @@ class LineChartGenerator(object):
     def create_all_year_data_chart(self):
         self.all_year_data_line_charts.append(self.create_charts(self.all_year_data))
 
-    def calculate_yearly_app_data(self):
+    def calculate_reviews_by_identifiable_individuals_per_app(self):
         for file in self.csv_files:
             yearly_data = []
             data = pd.read_csv(file)
@@ -49,12 +52,15 @@ class LineChartGenerator(object):
             app_count = 1
             for app_id in app_reviews:
                 all_monthly_data = []
+                # for each app we find the total number of reviews for each month
                 all_monthly_data.append(data.loc[data['App_ID'] == app_id, 'Month'].value_counts().to_dict())
-                app_monthly_data = []
+                per_app_monthly_data = []
                 for value in all_monthly_data:
-                    for i in range(1, 13):
-                        app_monthly_data.append((i, value.get(i, 0)))
-                yearly_data.append(("APP_" + str(app_count), app_monthly_data))
+                    for i in range(1, 13):  # won't use 13
+                        # for each month in the year, get the number of reviews
+                        per_app_monthly_data.append((i, value.get(i, 0)))
+                # initially used app_id but since it uses the package name of the app it would not help in the visualization
+                yearly_data.append(("APP_" + str(app_count), per_app_monthly_data))
                 app_count += 1
             self.yearly_app_data.append(yearly_data)
 
@@ -82,11 +88,15 @@ class LineChartGenerator(object):
             previous_x = 1
             previous_y = y_point
             for x_point in x_axis_points:
+                # plot the lines that will be draw for each app
+                # on these lines symbols of different sizes will appear at specific time points
                 ax.plot((x_point, previous_x), (previous_y, y_point), c='k', zorder=1, linewidth=0.5)
 
+        # there are 2 extra labels as [] in order to space out labels on the Y axis
         y_count = len(y_labels) - 2
         for year in all_data:
             for key, value in year[1]:
+                # place each symbol on the Y axis , and key represents the X axis location
                 ax.scatter(key, y_count,
                            s=self.categorise_symbol_size(value, self.round_up(figure_size_value)),
                            c='r',
@@ -115,6 +125,7 @@ class LineChartGenerator(object):
         return fig
 
     @staticmethod
+    # depending on the amount of data in the container the points are created
     def create_axis_points(data_container, x_axis_points, y_axis_points):
         x_count = 1
         y_count = 1
@@ -134,34 +145,41 @@ class LineChartGenerator(object):
         x_axis_labels.append('')
         y_axis_labels.append('')
 
-    @staticmethod
-    def create_legend(max_value):
-        plt.scatter([], [], c='r', s=200, marker='s', edgecolors='k', linewidths='2',
-                    label="0 <-> " + str(max_value // 4))
-        plt.scatter([], [], c='r', s=500, marker='s', edgecolors='k', linewidths='2',
-                    label=str(max_value // 4 + 1) + " <-> " + str(max_value // 4 * 2))
-        plt.scatter([], [], c='r', s=800, marker='s', edgecolors='k', linewidths='2',
-                    label=str(max_value // 4 * 2 + 1) + " <-> " + str(max_value // 4 * 3))
-        plt.scatter([], [], c='r', s=1100, marker='s', edgecolors='k', linewidths='2',
-                    label=str(max_value // 4 * 4) + " +")
+    # legend based on the symbols that are currently in the chart
+    # uses the sizes created for classification
+    def create_legend(self, max_value):
+        plt.scatter([], [], c='r', s=self.SMALLEST_SYMBOL_SIZE, marker='s', edgecolors='k', linewidths='2',
+                    label="0 <-> " + str(max_value // self.NUMBER_OF_BUCKETS))
+        plt.scatter([], [], c='r', s=self.SYMBOL_SIZE_DIFFERENCE + self.SMALLEST_SYMBOL_SIZE, marker='s',
+                    edgecolors='k', linewidths='2',
+                    label=str(max_value // self.NUMBER_OF_BUCKETS + 1) + " <-> " + str(
+                        max_value // self.NUMBER_OF_BUCKETS * 2))
+        plt.scatter([], [], c='r', s=self.SYMBOL_SIZE_DIFFERENCE * 2 + self.SMALLEST_SYMBOL_SIZE, marker='s',
+                    edgecolors='k', linewidths='2',
+                    label=str(max_value // self.NUMBER_OF_BUCKETS * 2 + 1) + " <-> " + str(
+                        max_value // self.NUMBER_OF_BUCKETS * 3))
+        plt.scatter([], [], c='r', s=self.SYMBOL_SIZE_DIFFERENCE * 3 + self.SMALLEST_SYMBOL_SIZE, marker='s',
+                    edgecolors='k', linewidths='2',
+                    label=str(max_value // self.NUMBER_OF_BUCKETS * 4) + " +")
         plt.legend(loc='upper left', title='Review Count', title_fontsize=18, bbox_to_anchor=(1.04, 1), borderpad=1.5,
                    labelspacing=2.5, handletextpad=1.5, frameon=False)
 
-    @staticmethod
-    def categorise_symbol_size(value, max_value):
-        size = 200
-        difference = 300
+    # symbol size is determined by the amount of reviews in the time point
+    def categorise_symbol_size(self, value, max_value):
+        size = self.SMALLEST_SYMBOL_SIZE
+        difference = self.SYMBOL_SIZE_DIFFERENCE
         if value == 0:
             return 0
-        elif 0 < value <= max_value // 4:
+        elif 0 < value <= max_value // self.NUMBER_OF_BUCKETS:
             return size
-        elif 751 <= value <= max_value // 4 * 2:
+        elif 751 <= value <= max_value // self.NUMBER_OF_BUCKETS * 2:
             return size + difference * 1
-        elif 1501 <= value <= max_value // 4 * 3:
+        elif 1501 <= value <= max_value // self.NUMBER_OF_BUCKETS * 3:
             return size + difference * 2
         else:
             return size + difference * 3
 
+    # the maximum amount of reviews that happened overall, to determine a maximum symbol size
     @staticmethod
     def get_maximum_data_value(all_data):
         max_val = 0
@@ -171,6 +189,8 @@ class LineChartGenerator(object):
                     max_val = value
         return max_val
 
+    # round up the maximum amount in order to avoid maximum values such as 2875 or 3
+    # this would round up to 3000 and 10 in such cases
     @staticmethod
     def round_up(n, decimals=0):
         multiplier = 10 ** decimals

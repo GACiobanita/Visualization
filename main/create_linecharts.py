@@ -9,8 +9,8 @@ def main():
     file_receiver.acquire_output_path()
 
     lc_generator.acquire_csv_files(file_receiver.csv_files)
-    lc_generator.calculate_all_year_data()
-    lc_generator.calculate_yearly_app_data()
+    lc_generator.calculate_overall_reviews_by_identifiable_individuals()
+    lc_generator.calculate_reviews_by_identifiable_individuals_per_app()
     lc_generator.create_all_year_data_chart()
     lc_generator.create_all_year_data_chart()
 

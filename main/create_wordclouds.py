@@ -12,7 +12,7 @@ def main():
     #create word clouds
     wc_generator.acquire_csv_files(file_receiver.csv_files)
     wc_generator.create_dictionaries()
-    wc_generator.create_wordcloud()
+    wc_generator.create_word_cloud()
 
     #save word clouds
     wc_generator.save_word_cloud(file_receiver.output_folder_path)

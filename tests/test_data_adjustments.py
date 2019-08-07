@@ -33,12 +33,12 @@ class Test_DataAdjustment(unittest.TestCase):
 
     def test_create_dict_from_tuple_valid(self):
         test = (("lol", 5), ("test", 4), ("trash", 3))
-        result = self.data_adjuster.create_dict_from_tuple(test)
+        result = self.data_adjuster.get_dict_from_tuple(test)
         self.assertNotEqual(0, len(result))
 
     def test_create_dict_from_tuple_invalid(self):
         test = (("lol", 5), ("test", 4), ("trash", 3))
-        result = self.data_adjuster.create_dict_from_tuple(test)
+        result = self.data_adjuster.get_dict_from_tuple(test)
         self.assertNotEqual(3, len(result))
 
     def test_remove_duplicate_rows_from_csv(self):
