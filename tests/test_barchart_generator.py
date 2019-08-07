@@ -12,13 +12,13 @@ class Test_BarChart(unittest.TestCase):
     def test_calculate_text_length_valid(self):
         self.file_receiver.acquire_input_path()
         self.barchart_generator.acquire_csv_files(self.file_receiver.csv_files)
-        self.barchart_generator.calculate_text_length()
+        self.barchart_generator.categorize_text_by_word_count()
         self.assertNotEqual(0, len(self.barchart_generator.csv_files))
 
     def test_calculate_text_length_invalid(self):
         self.file_receiver.acquire_input_path()
         self.barchart_generator.acquire_csv_files(self.file_receiver.csv_files)
-        self.barchart_generator.calculate_text_length()
+        self.barchart_generator.categorize_text_by_word_count()
         self.assertEqual(0, len(self.barchart_generator.csv_files))
 
     def test_create_horizontal_bar_chart_valid(self):
@@ -45,7 +45,7 @@ class Test_BarChart(unittest.TestCase):
     def test_save_bar_charts_valid(self):
         self.file_receiver.acquire_input_path()
         self.barchart_generator.acquire_csv_files(self.file_receiver.csv_files)
-        self.barchart_generator.calculate_text_length()
+        self.barchart_generator.categorize_text_by_word_count()
         self.barchart_generator.create_overall_bar_charts()
         self.barchart_generator.display_bar_charts()
         self.barchart_generator.save_bar_charts("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
@@ -53,11 +53,55 @@ class Test_BarChart(unittest.TestCase):
     def test_save_bar_charts_invalid(self):
         self.file_receiver.acquire_input_path()
         self.barchart_generator.acquire_csv_files(self.file_receiver.csv_files)
-        self.barchart_generator.calculate_text_length()
+        self.barchart_generator.categorize_text_by_word_count()
         self.barchart_generator.create_overall_bar_charts()
         self.barchart_generator.display_bar_charts()
         self.barchart_generator.save_bar_charts("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
 
+    def test_calculate_word_occurrence_valid(self):
+        self.barchart_generator.acquire_csv_files([
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest\\fraud_apps_640_review_info_final_2012_top_10.csv'])
+        self.barchart_generator.categorize_words_by_valence()
+        self.assertNotEqual(0, len(self.barchart_generator.file_valence_data))
+
+    # missing text column
+    def test_calculate_word_occurence_invalid(self):
+        self.barchart_generator.acquire_csv_files([
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\fraud_apps_640_review_info_final_2016_top_10_missing_text_column.csv'])
+        self.barchart_generator.categorize_words_by_valence()
+        self.assertNotEqual(0, len(self.barchart_generator.file_valence_data))
+
+    def test_create_divergent_valence_bar_chart_valid(self):
+        self.barchart_generator.acquire_csv_files([
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest\\fraud_apps_640_review_info_final_2012_top_10.csv'])
+        self.barchart_generator.categorize_words_by_valence()
+        self.barchart_generator.create_divergent_valence_bar_chart()
+        self.assertNotEqual(0, len(self.barchart_generator.file_valence_data))
+
+    def test_create_divergent_valence_bar_chart_invalid(self):
+        self.barchart_generator.acquire_csv_files([
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest\\fraud_apps_640_review_info_final_2012_top_10.csv'])
+        self.barchart_generator.categorize_words_by_valence()
+        self.barchart_generator.file_valence_data = None
+        self.barchart_generator.create_divergent_valence_bar_chart()
+        self.assertNotEqual(0, len(self.barchart_generator.file_valence_data))
+
+    def test_create_divergent_valence_bar_chart_valid(self):
+        self.barchart_generator.acquire_csv_files([
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest\\fraud_apps_640_review_info_final_2012_top_10.csv'])
+        self.barchart_generator.categorize_words_by_valence()
+        self.barchart_generator.create_divergent_valence_bar_chart()
+        self.barchart_generator.save_divergent_bar_charts('D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest')
+        self.assertNotEqual(0, len(self.barchart_generator.file_valence_data))
+
+    def test_create_divergent_valence_bar_chart_invalid(self):
+        self.barchart_generator.acquire_csv_files([
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest\\fraud_apps_640_review_info_final_2012_top_10.csv'])
+        self.barchart_generator.categorize_words_by_valence()
+        self.barchart_generator.create_divergent_valence_bar_chart()
+        self.barchart_generator.divergent_bar_chart[0] = None
+        self.barchart_generator.save_divergent_bar_charts('D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest')
+        self.assertNotEqual(0, len(self.barchart_generator.file_valence_data))
 
 if __name__ == "__main__":
     unittest.main()

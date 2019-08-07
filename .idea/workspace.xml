@@ -2,16 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ced637e1-c500-451a-aed5-7eab72a3458e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/create_piecharts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_pie_chart_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/bar_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/bar_chart_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/data_adjustments.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/data_adjustments.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/line_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/line_chart_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/pie_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/pie_chart_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/sentiment_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/sentiment_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/word_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/word_cloud_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/create_barcharts.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/create_barcharts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/create_linecharts.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/create_linecharts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/create_wordclouds.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/create_wordclouds.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_barchart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_barchart_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_data_adjustments.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_data_adjustments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_line_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_line_chart_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_sentiment_analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_sentiment_analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_wordcloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_wordcloud.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,8 +61,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.create_piecharts">
-    <configuration name="create_piecharts" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python tests.Unittests for test_barchart_generator.Test_BarChart.test_create_divergent_valence_bar_chart_valid">
+    <configuration name="create_barcharts" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -68,7 +74,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/create_piecharts.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/create_barcharts.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -77,28 +83,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="csv_modifier" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Visualization" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/csv_modifier.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for test_data_adjustments.Test_DataAdjustment.test_remove_duplicate_rows_from_csv" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_barchart_generator.Test_BarChart.test_calculate_word_occurrence" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -108,11 +93,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_data_adjustments.Test_DataAdjustment.test_remove_duplicate_rows_from_csv&quot;" />
+      <option name="_new_target" value="&quot;test_barchart_generator.Test_BarChart.test_calculate_word_occurrence&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_pie_chart_generator.Test_Pie_Chart_Generator.test_save_basic_pie_charts_valid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_barchart_generator.Test_BarChart.test_create_divergent_valence_bar_chart_invalid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -122,11 +107,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_pie_chart_generator.Test_Pie_Chart_Generator.test_save_basic_pie_charts_valid&quot;" />
+      <option name="_new_target" value="&quot;test_barchart_generator.Test_BarChart.test_create_divergent_valence_bar_chart_invalid&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_pie_chart_generator.Test_Pie_Chart_Generator.test_save_nested_pie_chart_valid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_barchart_generator.Test_BarChart.test_create_divergent_valence_bar_chart_valid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -136,17 +121,31 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_pie_chart_generator.Test_Pie_Chart_Generator.test_save_nested_pie_chart_valid&quot;" />
+      <option name="_new_target" value="&quot;test_barchart_generator.Test_BarChart.test_create_divergent_valence_bar_chart_valid&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for test_wordcloud.Test_WordCloud.test_create_dictionaries_valid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Visualization" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_wordcloud.Test_WordCloud.test_create_dictionaries_valid&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.create_piecharts" />
-        <item itemvalue="Python tests.Unittests for test_pie_chart_generator.Test_Pie_Chart_Generator.test_save_nested_pie_chart_valid" />
-        <item itemvalue="Python.csv_modifier" />
-        <item itemvalue="Python tests.Unittests for test_data_adjustments.Test_DataAdjustment.test_remove_duplicate_rows_from_csv" />
-        <item itemvalue="Python tests.Unittests for test_pie_chart_generator.Test_Pie_Chart_Generator.test_save_basic_pie_charts_valid" />
+        <item itemvalue="Python tests.Unittests for test_barchart_generator.Test_BarChart.test_create_divergent_valence_bar_chart_valid" />
+        <item itemvalue="Python tests.Unittests for test_wordcloud.Test_WordCloud.test_create_dictionaries_valid" />
+        <item itemvalue="Python.create_barcharts" />
+        <item itemvalue="Python tests.Unittests for test_barchart_generator.Test_BarChart.test_create_divergent_valence_bar_chart_invalid" />
+        <item itemvalue="Python tests.Unittests for test_barchart_generator.Test_BarChart.test_calculate_word_occurrence" />
       </list>
     </recent_temporary>
   </component>
