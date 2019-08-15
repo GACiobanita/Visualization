@@ -2,7 +2,7 @@ from implementation.pie_chart_generator import PieChartGenerator
 import unittest
 
 
-class Test_Pie_Chart_Generator(unittest.TestCase):
+class TestPieChartGenerator(unittest.TestCase):
 
     def setUp(self):
         self.pie_chart_generator = PieChartGenerator()

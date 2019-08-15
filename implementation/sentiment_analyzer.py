@@ -28,6 +28,7 @@ class SentimentAnalyzer(object):
     # containing scores from the VADER analyzer
     def create_data_frames_with_result_columns(self):
         for file in self.csv_files:
+            print("Started file " + str(file))
             data = pd.read_csv(file)
             csv_data = self.create_csv_data_frame(existing_csv_columns=data.columns)
             for index, row in data.iterrows():
@@ -35,6 +36,7 @@ class SentimentAnalyzer(object):
                 result = self.calculate_text_score_and_word_appearance(text)
                 self.update_csv_data(csv_data=csv_data, row=row, result=result)
             self.sentiment_data_frames.append(csv_data)
+            print("Completed for file " + str(file))
 
     @staticmethod
     def create_csv_data_frame(existing_csv_columns):
@@ -61,3 +63,13 @@ class SentimentAnalyzer(object):
             data_frame.to_csv(output_folder_path + "\\" + tail[:-4] + "_including_sentiment_score.csv", index=None,
                               header=True)
             count += 1
+
+    @staticmethod
+    def largest_sentiment_value(positive, negative, neutral):
+        if (positive >= negative) and (positive >= neutral):
+            largest = positive
+        elif (negative >= positive) and (negative >= neutral):
+            largest = negative
+        else:
+            largest = neutral
+        return largest

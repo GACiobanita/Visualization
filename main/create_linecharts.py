@@ -12,7 +12,7 @@ def main():
     lc_generator.calculate_overall_reviews_by_identifiable_individuals()
     lc_generator.calculate_reviews_by_identifiable_individuals_per_app()
     lc_generator.create_all_year_data_chart()
-    lc_generator.create_all_year_data_chart()
+    lc_generator.create_yearly_app_data_charts()
 
     lc_generator.save_yearly_app_charts(file_receiver.output_folder_path)
     lc_generator.save_all_year_charts(file_receiver.output_folder_path)

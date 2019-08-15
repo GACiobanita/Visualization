@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+import matplotlib.gridspec as gridspec
 import pandas as pd
 import numpy as np
 from .data_adjustments import DataAdjustment
@@ -23,7 +24,7 @@ class FileValenceData(object):
         for key, value in sorted_word_data:
             # get the valence score for the key, each key is a word in the VADER lexicon
             # the value is the number of appearances of the key in the text
-            valence = self.data_adjuster.extract_valence_from_lexicon(key)
+            valence = self.data_adjuster.get_valence_from_lexicon(key)
             if valence > 0:
                 self.positive_valence_words[key] = (value, valence)
             else:
@@ -32,7 +33,7 @@ class FileValenceData(object):
     def get_emoticon_valence(self, emoticon_data):
         sorted_emoticon_data = sorted(emoticon_data.items(), key=lambda kv: kv[1], reverse=True)
         for key, value in sorted_emoticon_data:
-            valence = self.data_adjuster.extract_valence_from_lexicon(key)
+            valence = self.data_adjuster.get_valence_from_lexicon(key)
             if valence > 0:
                 self.positive_valence_emoticons[key] = (value, valence)
             else:
@@ -51,8 +52,26 @@ class BarChartGenerator(object):
         self.file_valence_data = []
         self.divergent_bar_charts = []
 
+        self.file_rating_data = []
+
     def acquire_csv_files(self, csv_files):
         self.csv_files = csv_files
+
+    def categorize_ratings(self):
+        for file in self.csv_files:
+            data = pd.read_csv(file)
+            token_data = data['Rating'].value_counts().to_dict()
+            positive_compound_data = data[data['Compound'] >= 0.5].groupby('Rating')['Compound'].count().to_dict()
+            self.check_dict_for_key(positive_compound_data, token_data.keys())
+            negative_compound_data = data[data['Compound'] <= -0.5].groupby('Rating')['Compound'].count().to_dict()
+            self.check_dict_for_key(negative_compound_data, token_data.keys())
+            neutral_compound_data = data[(data['Compound'] > -0.50) & (data['Compound'] < 0.5)].groupby('Rating')[
+                'Compound'].count().to_dict()
+            self.check_dict_for_key(neutral_compound_data, token_data.keys())
+            year = self.data_adjuster.get_year_from_string(file)
+            file_name = self.data_adjuster.get_file_name_from_path(file)
+            self.file_rating_data.append(
+                (file_name, year, token_data, positive_compound_data, negative_compound_data, neutral_compound_data))
 
     # classify each review in the csv_files into different categories based on the number of words contained
     def categorize_text_by_word_count(self):
@@ -62,7 +81,7 @@ class BarChartGenerator(object):
             for text in data['Text']:
                 text = str(text)
                 text = self.data_adjuster.remove_string_punctuation(text)
-                self.allocate_review_to_count_category(len(text))
+                self.allocate_review_to_count_category(len(text), current_word_count)
             self.per_file_word_count.append((self.data_adjuster.get_year_from_string(file), current_word_count))
         self.calculate_total_word_count_of_files()
 
@@ -123,7 +142,7 @@ class BarChartGenerator(object):
             chart.show()
 
     def create_horizontal_bar_chart(self, dictionary, title):
-        fig = plt.figure()
+        fig = plt.figure(figsize=(8, 6))
         ax = fig.add_subplot()
 
         # data
@@ -143,18 +162,60 @@ class BarChartGenerator(object):
         ax.set_yticks(y_pos)
         ax.set_yticklabels(bar_name)
         ax.invert_yaxis()
-        ax.set_xlabel('Words Per Rating')
+        ax.set_ylabel('Words Per Rating')
+        ax.set_xlabel('Number of reviews')
         ax.set_title(title)
 
         # create a line in the bar chart to show the location of the average word count
         ax.axvline(np.mean(list(dictionary.values())), color='red',
-                   label='Average = ' + str(int(np.mean(list(dictionary.values())))))
+                   label='Average of categories: ' + str(int(np.mean(list(dictionary.values())))))
+        print(str(int(np.mean(list(dictionary.values())))))
 
         # create a legend explaining the average
         # loc 0 places the legend in the 'best' location where there would be minimum overlap with the chart
         plt.legend(loc=0)
 
         self.bar_charts.append(fig)
+
+    def create_rating_bar_charts(self):
+        for file_name, year, token_data, positive_compound, negative_compound, neutral_compound in self.file_rating_data:
+            st = plt.suptitle(file_name + ' ' + year)
+            st.set_y(0.95)
+            fig = plt.figure(1)
+            fig.set_figheight(20)
+            fig.set_figwidth(15)
+            plt.subplot(121)
+            x_labels = []
+            x_height = []
+            total_ratings = 0
+
+            for key in sorted(token_data, reverse=True):
+                x_labels.append(int(key))
+                x_height.append(token_data[key])
+                total_ratings += token_data[key]
+
+            bar_chart = plt.bar(x_labels, x_height)
+            plt.xlabel('Ratings')
+            plt.ylabel('Number of Ratings', rotation=90)
+
+            for rect in bar_chart:
+                height = rect.get_height()
+                percentage = str(int(height) / total_ratings * 100)
+                plt.text(rect.get_x() + rect.get_width() / 2.0, height,
+                         percentage[:4] + '%(' + '%d' % int(height) + ')',
+                         ha='center', va='bottom')
+
+            plt.subplot(122)
+            positive_values = sorted(list(positive_compound.values()), reverse=True)
+            negative_values = sorted(list(negative_compound.values()), reverse=True)
+            neutral_values = sorted(list(neutral_compound.values()), reverse=True)
+            positive_stacked_chart = plt.bar(x_labels, positive_values, color='g')
+            negative_stacked_chart = plt.bar(x_labels, negative_values, color='r', bottom=positive_values)
+            neutral_stacked_chart = plt.bar(x_labels, neutral_values,
+                                            bottom=np.array(positive_values) + np.array(negative_values), color='k')
+            plt.xlabel('Ratings')
+            plt.subplots_adjust(top=0.85)
+            plt.show()
 
     # these are bar charts that go in separate directions
     # they are still horizontal
@@ -256,3 +317,9 @@ class BarChartGenerator(object):
             head, tail = os.path.split(self.csv_files[count])
             chart.savefig(output_folder_path + "\\" + tail[:-4] + "_divergent_bar_chart.png")
             count += 1
+
+    @staticmethod
+    def check_dict_for_key(data_dict, key_list):
+        for key in key_list:
+            if key not in data_dict:
+                data_dict[key] = 0

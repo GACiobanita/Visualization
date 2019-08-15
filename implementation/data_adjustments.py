@@ -97,7 +97,7 @@ class DataAdjustment(object):
                     word_dict[lowered_key] = value
         return emoticon_dict, word_dict
 
-    def extract_valence_from_lexicon(self, item):
+    def get_valence_from_lexicon(self, item):
         return self.vader_lexicon[item.lower()]
 
     @staticmethod
@@ -105,7 +105,12 @@ class DataAdjustment(object):
         return calendar.month_name[int(number)]
 
     @staticmethod
-    def get_year_from_string(str):
-        year_search = re.search('\d{4}', str)
+    def get_year_from_string(full_str):
+        year_search = re.search('\d{4}', full_str)
         year = year_search.group(0) if year_search else 'XXXX'
         return year
+
+    @staticmethod
+    def get_file_name_from_path(full_str):
+        head, tail = os.path.split(full_str)
+        return tail[:-4]

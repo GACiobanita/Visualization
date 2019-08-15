@@ -2,7 +2,7 @@ import unittest
 from implementation.file_receiver import FileReceiver
 
 
-class Test_FileReceiver(unittest.TestCase):
+class TestFileReceiver(unittest.TestCase):
 
     def setUp(self):
         self.file_receiver = FileReceiver()

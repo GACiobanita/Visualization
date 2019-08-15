@@ -3,7 +3,7 @@ from implementation.sentiment_analyzer import SentimentAnalyzer
 from implementation.file_receiver import FileReceiver
 
 
-class Test_SentimentAnalyzer(unittest.TestCase):
+class TestSentimentAnalyzer(unittest.TestCase):
 
     def setUp(self):
         self.file_receiver = FileReceiver()
@@ -41,9 +41,9 @@ class Test_SentimentAnalyzer(unittest.TestCase):
     # missing data row
     def test_calculate_scores_for_reviews_invalid(self):
         self.sentiment_analyzer.acquire_csv_files([
-            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\Test\\fraud_apps_640_review_info_final_2014_top_10_no_title_column.csv'])
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\History\\Google IDs\\NO ANON\\fraud_apps_640_review_info_final_2015.csv'])
         self.sentiment_analyzer.create_data_frames_with_result_columns()
-        self.sentiment_analyzer.save_sentiment_csv_file('D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test')
+        self.sentiment_analyzer.save_sentiment_csv_file('D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\History\\Google IDs\\NO ANON')
         self.assertNotEqual(0, len(self.sentiment_analyzer.sentiment_data_frames))
 
 

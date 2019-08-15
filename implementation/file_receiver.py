@@ -1,5 +1,6 @@
 import os
 
+
 class FileReceiver:
 
     def __init__(self):
@@ -16,15 +17,16 @@ class FileReceiver:
             print("New file path selected.")
             self.input_folder_path = filepath
             for r, d, f in os.walk(self.input_folder_path):
+                d.clear()
                 for file in f:
-                    self.csv_files.append(r + "\\" + file)
+                    if ".csv" in str(file):
+                        self.csv_files.append(r + "\\" + file)
         else:
             print(
                 "Input path is not correct, default will be used: D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\PythonUsage")
             for r, d, f in os.walk(self.input_folder_path):
                 for file in f:
                     self.csv_files.append(r + "\\" + file)
-
 
     def acquire_output_path(self):
         print("Default file path to output folder is: D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
@@ -33,7 +35,8 @@ class FileReceiver:
             print("New file path selected.")
             self.output_folder_path = filepath
         else:
-            print("Output path is not correct, default will be used: D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
+            print(
+                "Output path is not correct, default will be used: D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
 
     def pass_csv_files(self):
         return self.csv_files

@@ -3,7 +3,7 @@ from implementation.line_chart_generator import LineChartGenerator
 from implementation.file_receiver import FileReceiver
 
 
-class Test_LineChart(unittest.TestCase):
+class TestLineChart(unittest.TestCase):
 
     def setUp(self):
         self.file_receiver = FileReceiver()

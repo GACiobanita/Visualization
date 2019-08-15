@@ -3,7 +3,7 @@ from implementation.data_adjustments import DataAdjustment
 from implementation.file_receiver import FileReceiver
 
 
-class Test_DataAdjustment(unittest.TestCase):
+class TestDataAdjustment(unittest.TestCase):
 
     def setUp(self):
         self.data_adjuster = DataAdjustment()

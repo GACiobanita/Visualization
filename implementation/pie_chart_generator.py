@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 import os
 from implementation.data_adjustments import DataAdjustment
 
@@ -18,7 +19,8 @@ class ChartSection(object):
         self.section_count += 1
 
     def update_review_star_count(self, key):
-        self.section_star_count[key] += 1
+        if key is not str(np.nan):
+            self.section_star_count[key] += 1
 
     def __str__(self):
         return "Section Count:" + str(self.section_count) + "\n " + "Star Count:" + str(
@@ -74,7 +76,8 @@ class PieChartGenerator(object):
             data = pd.read_csv(file)
             for index, row in data.iterrows():
                 # from the csv file, classify ech review based on compound and rating
-                chart_data.sentiment_and_rating_classification(row['Compound'], row['Rating'])
+                if row['Rating'] > 0:
+                    chart_data.sentiment_and_rating_classification(row['Compound'], row['Rating'])
             self.chart_data.append((self.data_adjuster.get_year_from_string(file), chart_data))
 
     # basic pie chart contains the positive, negative and neutral slices

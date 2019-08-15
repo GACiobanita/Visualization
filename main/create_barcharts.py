@@ -11,7 +11,7 @@ def main():
 
     bc_generator.acquire_csv_files(file_receiver.csv_files)
 
-    chart_type = input("Sentiment Divergent bar chart(S) of Word Count bar chart(W)?")
+    chart_type = input("Sentiment Divergent bar chart(S) or Word Count bar chart(W)?")
 
     if chart_type == 'W':
 
