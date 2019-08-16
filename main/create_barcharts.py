@@ -11,7 +11,7 @@ def main():
 
     bc_generator.acquire_csv_files(file_receiver.csv_files)
 
-    chart_type = input("Sentiment Divergent bar chart(S) or Word Count bar chart(W)?")
+    chart_type = input("Sentiment Divergent bar chart(S) or Word Count bar chart(W) or Rating bar charts(R)?")
 
     if chart_type == 'W':
 
@@ -50,6 +50,23 @@ def main():
                     print("I didn't catch that, try again.")
 
         bc_generator.save_divergent_bar_charts(file_receiver.output_folder_path)
+
+    elif chart_type == 'R':
+        bc_generator.categorize_ratings()
+        bc_generator.create_rating_bar_charts()
+
+        while True:
+            input_text = input("Would you like to see the bar charts? (Y/N) :")
+            if input_text == 'Y':
+                bc_generator.display_bar_charts()
+                break
+            else:
+                if input_text == 'N':
+                    print("Shutting down.")
+                    break
+                else:
+                    print("I didn't catch that, try again.")
+        bc_generator.save_rating_charts(file_receiver.output_folder_path)
 
 
 if __name__ == "__main__":

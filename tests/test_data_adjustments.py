@@ -1,6 +1,7 @@
 import unittest
 from implementation.data_adjustments import DataAdjustment
 from implementation.file_receiver import FileReceiver
+import pandas as pd
 
 
 class TestDataAdjustment(unittest.TestCase):
@@ -46,6 +47,10 @@ class TestDataAdjustment(unittest.TestCase):
         self.data_adjuster.remove_duplicate_rows_from_csv(self.file_receiver.csv_files,
                                                           'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test')
 
+    def test_get_term_frequency(self):
+        pd_data = pd.read_csv(
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2013\\fraud_apps_2013_no_anon_reviews.csv')
+        self.data_adjuster.get_term_frequency(pd_data, 'Text')
 
 if __name__ == "__main__":
     unittest.main()

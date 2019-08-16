@@ -112,7 +112,7 @@ class TestBarChart(unittest.TestCase):
 
     def test_create_rating_bar_charts(self):
         self.barchart_generator.acquire_csv_files([
-            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2012\\sentiment\\fraud_apps_2012_all_reviews_including_sentiment_score.csv'])
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2012\\sentiment\\fraud_apps_2012_top_10_no_anon_reviews_including_sentiment_score.csv'])
         self.barchart_generator.categorize_ratings()
         self.barchart_generator.create_rating_bar_charts()
 
