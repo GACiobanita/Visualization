@@ -3,10 +3,13 @@ import pandas as pd
 import os
 import calendar
 import re
+import numpy as np
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk import FreqDist
 from inspect import getsourcefile
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 class DataAdjustment(object):
@@ -114,3 +117,13 @@ class DataAdjustment(object):
     def get_file_name_from_path(full_str):
         head, tail = os.path.split(full_str)
         return tail[:-4]
+
+    @staticmethod
+    def get_term_frequency(pd_data, data_column):
+        tf_idf = TfidfVectorizer(decode_error='ignore', encoding='string', stop_words='english')
+        data = tf_idf.fit_transform(pd_data[data_column].values.astype(str))
+        first_vector = data[0]
+        df = pd.DataFrame(first_vector.T.todense(), index=tf_idf.get_feature_names(), columns=['tf_idf'])
+        df = df[df.tf_idf != 0]
+        df = df.sort_values(by=['tf_idf'], ascending=False)
+        print(df)
