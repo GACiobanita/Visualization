@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ced637e1-c500-451a-aed5-7eab72a3458e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/bar_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/bar_chart_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/data_adjustments.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/data_adjustments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/create_barcharts.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/create_barcharts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_barchart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_barchart_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/word_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/word_cloud_generator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_data_adjustments.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_data_adjustments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_wordcloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_wordcloud.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,29 +51,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.create_barcharts">
-    <configuration name="create_barcharts" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Visualization" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/create_barcharts.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for test_barchart_generator.TestBarChart.test_categorize_rating" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests for test_data_adjustments.TestDataAdjustment.test_create_k_means_clusters_from_semantic_matrix">
+    <configuration name="Unittests for test_data_adjustments.TestDataAdjustment.test_create_k_means_clusters_from_semantic_matrix" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -84,11 +62,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_barchart_generator.TestBarChart.test_categorize_rating&quot;" />
+      <option name="_new_target" value="&quot;test_data_adjustments.TestDataAdjustment.test_create_k_means_clusters_from_semantic_matrix&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_barchart_generator.TestBarChart.test_create_rating_bar_charts" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_data_adjustments.TestDataAdjustment.test_create_semantic_matrix_from_tf_idf" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,11 +76,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_barchart_generator.TestBarChart.test_create_rating_bar_charts&quot;" />
+      <option name="_new_target" value="&quot;test_data_adjustments.TestDataAdjustment.test_create_semantic_matrix_from_tf_idf&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_data_adjustments.TestDataAdjustment.test_get_book_frequency" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_data_adjustments.TestDataAdjustment.test_create_tf_idf_matrix_from_texts" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -112,11 +90,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_data_adjustments.TestDataAdjustment.test_get_book_frequency&quot;" />
+      <option name="_new_target" value="&quot;test_data_adjustments.TestDataAdjustment.test_create_tf_idf_matrix_from_texts&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_data_adjustments.TestDataAdjustment.test_get_term_frequency" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_data_adjustments.TestDataAdjustment.test_get_tf_idf_from_entire_text" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -126,17 +104,31 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_data_adjustments.TestDataAdjustment.test_get_term_frequency&quot;" />
+      <option name="_new_target" value="&quot;test_data_adjustments.TestDataAdjustment.test_get_tf_idf_from_entire_text&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for test_data_adjustments.TestDataAdjustment.test_train_engine" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Visualization" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_data_adjustments.TestDataAdjustment.test_train_engine&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.create_barcharts" />
-        <item itemvalue="Python tests.Unittests for test_barchart_generator.TestBarChart.test_create_rating_bar_charts" />
-        <item itemvalue="Python tests.Unittests for test_data_adjustments.TestDataAdjustment.test_get_term_frequency" />
-        <item itemvalue="Python tests.Unittests for test_data_adjustments.TestDataAdjustment.test_get_book_frequency" />
-        <item itemvalue="Python tests.Unittests for test_barchart_generator.TestBarChart.test_categorize_rating" />
+        <item itemvalue="Python tests.Unittests for test_data_adjustments.TestDataAdjustment.test_create_k_means_clusters_from_semantic_matrix" />
+        <item itemvalue="Python tests.Unittests for test_data_adjustments.TestDataAdjustment.test_create_semantic_matrix_from_tf_idf" />
+        <item itemvalue="Python tests.Unittests for test_data_adjustments.TestDataAdjustment.test_create_tf_idf_matrix_from_texts" />
+        <item itemvalue="Python tests.Unittests for test_data_adjustments.TestDataAdjustment.test_train_engine" />
+        <item itemvalue="Python tests.Unittests for test_data_adjustments.TestDataAdjustment.test_get_tf_idf_from_entire_text" />
       </list>
     </recent_temporary>
   </component>

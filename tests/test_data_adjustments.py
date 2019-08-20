@@ -47,10 +47,44 @@ class TestDataAdjustment(unittest.TestCase):
         self.data_adjuster.remove_duplicate_rows_from_csv(self.file_receiver.csv_files,
                                                           'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test')
 
-    def test_get_term_frequency(self):
+    def test_get_tf_idf_scores_per_text(self):
         pd_data = pd.read_csv(
-            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2013\\fraud_apps_2013_no_anon_reviews.csv')
-        self.data_adjuster.get_term_frequency(pd_data, 'Text')
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2014\\fraud_apps_2014_no_anon_reviews.csv')
+        result = self.data_adjuster.get_tf_idf_scores_per_text(pd_data, 'Text')
+        # self.assertNotEqual(0, result.items())
+
+    def test_get_tf_idf_from_entire_text(self):
+        pd_data = pd.read_csv(
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2014\\fraud_apps_2013_no_anon_reviews.csv')
+        self.data_adjuster.get_tf_idf_from_entire_text(pd_data, 'Text')
+
+    def test_train_engine(self):
+        pd_data = pd.read_csv(
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2013\\sentiment\\fraud_apps_2013_no_anon_reviews_including_sentiment_score.csv')
+        result = self.data_adjuster.train_engine(pd_data['Text'], pd_data['Compound'])
+
+    def test_create_tf_idf_matrix_from_texts(self):
+        pd_data = pd.read_csv(
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2013\\sentiment\\fraud_apps_2013_no_anon_reviews_including_sentiment_score.csv')
+        tf_idf_matrix = self.data_adjuster.create_tf_idf_matrix_from_texts(pd_data['Text'])
+
+    def test_create_semantic_matrix_from_tf_idf(self):
+        pd_data = pd.read_csv(
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2013\\sentiment\\fraud_apps_2013_no_anon_reviews_including_sentiment_score.csv')
+        tf_idf_matrix = self.data_adjuster.create_tf_idf_matrix_from_texts(pd_data['Text'])
+        semantic_matrix = self.data_adjuster.create_semantic_matrix_from_tf_idf(tf_idf_matrix, pd_data['Compound'],
+                                                                                pd_data['Text'])
+
+    def test_create_k_means_clusters_from_semantic_matrix(self):
+        pd_data = pd.read_csv(
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2014\\sentiment\\fraud_apps_2014_no_anon_reviews_including_sentiment_score.csv')
+        tf_idf_matrix = self.data_adjuster.create_tf_idf_matrix_from_texts(pd_data['Text'])
+        semantic_matrix, semantic_dataframe = self.data_adjuster.create_semantic_matrix_from_tf_idf(tf_idf_matrix,
+                                                                                                    pd_data['Compound'],
+                                                                                                    pd_data['Text'])
+        cluster_matrix = self.data_adjuster.create_k_means_clusters_from_semantic_matrix(semantic_matrix,
+                                                                                         semantic_dataframe, 4)
+
 
 if __name__ == "__main__":
     unittest.main()
