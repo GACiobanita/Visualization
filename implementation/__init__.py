@@ -4,6 +4,7 @@ from .file_receiver import FileReceiver
 from .data_adjustments import DataAdjustment
 from .sentiment_analyzer import SentimentAnalyzer
 from .pie_chart_generator import PieChartGenerator
+from .text_mining import TextMining
 
 __all__ = [
     "WordCloudGenerator",
@@ -11,5 +12,6 @@ __all__ = [
     "FileReceiver",
     "DataAdjustment",
     "SentimentAnalyzer",
-    "PieChartGenerator"
+    "PieChartGenerator",
+    "TextMining"
 ]

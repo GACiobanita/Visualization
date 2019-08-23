@@ -79,6 +79,13 @@ class WordCloudGenerator(object):
                 sentiment_word_cloud.emoticon_classification(separated_emoticon_usage)
             self.sentiment_word_cloud_data[year] = sentiment_word_cloud
 
+    def calculate_individual_tf_idf_scores_of_text(self):
+        for file in self.csv_files:
+            csv_data = pd.read_csv(file)
+            year = DATA_ADJUSTER.get_year_from_string(file)
+            result = DATA_ADJUSTER.get_tf_idf_scores_per_text(csv_data, 'Text')
+            print(result)
+
     def create_word_cloud(self):
         for freq in self.word_frequency:
             subset = freq[['Word', 'Frequency']]  # get subset of data

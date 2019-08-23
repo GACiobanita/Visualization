@@ -87,6 +87,13 @@ class TestWordCloud(unittest.TestCase):
         self.wordcloud.create_sentiment_word_cloud()
         self.wordcloud.save_sentiment_clouds('D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\Sentiment_word_cloud')
 
+    def test_calculate_individual_tf_idf_scores_of_text(self):
+        self.wordcloud.acquire_csv_files([
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2015\\fraud_apps_2015_all_reviews.csv'
+        ])
+        self.wordcloud.calculate_individual_tf_idf_scores_of_text()
+
+
 
 if __name__ == "__main__":
     unittest.main()
