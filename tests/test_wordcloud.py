@@ -23,14 +23,14 @@ class TestWordCloud(unittest.TestCase):
     def test_create_dictionaries_valid(self):
         self.file_receiver.acquire_input_path()
         self.wordcloud.acquire_csv_files(self.file_receiver.csv_files)
-        self.wordcloud.create_dictionaries()
+        self.wordcloud.create_dictionaries('Text')
         self.assertNotEqual(0, len(self.wordcloud.csv_files))
         self.assertNotEqual(0, len(self.wordcloud.word_frequency))
 
     def test_create_dictionaries_invalid(self):
         self.file_receiver.acquire_input_path()
         self.wordcloud.acquire_csv_files(self.file_receiver.csv_files)
-        self.wordcloud.create_dictionaries()
+        self.wordcloud.create_dictionaries('Text')
         self.assertEqual(0, len(self.wordcloud.csv_files))
         self.assertEqual(0, len(self.wordcloud.word_frequency))
 
@@ -53,7 +53,7 @@ class TestWordCloud(unittest.TestCase):
     def test_save_word_cloud_valid(self):
         self.wordcloud.acquire_csv_files(
             ['D:\Google_Play_Fraud_Benign_Malware\Fraud\Test\fraud_apps_640_review_info_final_2012_top_10.csv'])
-        self.wordcloud.create_dictionaries()
+        self.wordcloud.create_dictionaries('Text')
         self.wordcloud.create_word_cloud()
         self.assertNotEqual(0, len(self.wordcloud.word_clouds))
         self.wordcloud.save_word_cloud("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
@@ -61,7 +61,7 @@ class TestWordCloud(unittest.TestCase):
     def test_save_word_cloud_invalid(self):
         self.wordcloud.acquire_csv_files(
             ['D:\Google_Play_Fraud_Benign_Malware\Fraud\Test\fraud_apps_640_review_info_final_2012_top_10.csv'])
-        self.wordcloud.create_dictionaries()
+        self.wordcloud.create_dictionaries('Text')
         self.wordcloud.create_word_cloud()
         self.assertNotEqual(0, len(self.wordcloud.word_clouds))
         self.wordcloud.save_word_cloud("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
@@ -69,31 +69,34 @@ class TestWordCloud(unittest.TestCase):
     def test_create_sentiment_dictionaries_valid(self):
         self.file_receiver.acquire_input_path()
         self.wordcloud.acquire_csv_files(self.file_receiver.csv_files)
-        self.wordcloud.create_sentiment_dictionaries()
+        self.wordcloud.create_sentiment_dictionaries('Text')
         self.assertNotEqual(0, len(self.wordcloud.sentiment_word_cloud_data))
 
     def test_create_sentiment_word_cloud_valid(self):
         self.wordcloud.acquire_csv_files([
             'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\Sentiment_word_cloud\\fraud_apps_640_review_info_final_2012_top_10_including_sentiment_score.csv'])
-        self.wordcloud.create_sentiment_dictionaries()
+        self.wordcloud.create_sentiment_dictionaries('Text')
         self.assertNotEqual(0, len(self.wordcloud.sentiment_word_cloud_data))
         self.wordcloud.create_sentiment_word_cloud()
 
     def test_save_sentiment_word_cloud_valid(self):
         self.wordcloud.acquire_csv_files([
             'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\Sentiment_word_cloud\\fraud_apps_640_review_info_final_2013_top_10_including_sentiment_score.csv'])
-        self.wordcloud.create_sentiment_dictionaries()
+        self.wordcloud.create_sentiment_dictionaries('Text')
         self.assertNotEqual(0, len(self.wordcloud.sentiment_word_cloud_data))
         self.wordcloud.create_sentiment_word_cloud()
         self.wordcloud.save_sentiment_clouds('D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\Sentiment_word_cloud')
 
-    def test_calculate_individual_tf_idf_scores_of_text(self):
+    def test_create_dictionaries_from_text_topics(self):
         self.wordcloud.acquire_csv_files([
-            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2015\\fraud_apps_2015_all_reviews.csv'
-        ])
-        self.wordcloud.calculate_individual_tf_idf_scores_of_text()
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2016\\Keywords\\topic_keywords_fraud_apps_2016_all_reviews_including_sentiment_score.csv'])
+        self.wordcloud.create_dictionaries_from_topics()
 
-
+    def test_create_figure_with_multiple_word_clouds(self):
+        self.wordcloud.acquire_csv_files([
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2016\\Keywords\\topic_keywords_fraud_apps_2016_all_reviews_including_sentiment_score.csv'])
+        self.wordcloud.create_dictionaries_from_topics()
+        self.wordcloud.create_figure_with_multiple_word_clouds()
 
 if __name__ == "__main__":
     unittest.main()

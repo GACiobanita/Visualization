@@ -51,13 +51,22 @@ class WordCloudGenerator(object):
         self.positive_emoticon_clouds = {}
         self.negative_emoticon_clouds = {}
 
+        self.multiple_clouds_single_figure = []
+        self.word_arrays = []
+
     def acquire_csv_files(self, csv_files):
         self.csv_files = csv_files
 
-    def create_dictionaries(self):
+    def create_dictionaries_from_topics(self):
         for file in self.csv_files:
             data = pd.read_csv(file)
-            string_container = data['Text'].str.lower().str.cat(sep=' ')
+            for index, row in data.iterrows():
+                self.word_arrays.append((file, row.array[1:]))
+
+    def create_dictionaries(self, column):
+        for file in self.csv_files:
+            data = pd.read_csv(file)
+            string_container = data[column].str.lower().str.cat(sep=' ')
             string_container = DATA_ADJUSTER.remove_string_punctuation(string_container)
             tokenized_words = DATA_ADJUSTER.tokenize_words(string_container)
             words = DATA_ADJUSTER.remove_string_stopwords(tokenized_words)
@@ -65,26 +74,19 @@ class WordCloudGenerator(object):
             results = pd.DataFrame(word_frequency.most_common(100), columns=['Word', 'Frequency'])
             self.word_frequency.append(results)
 
-    def create_sentiment_dictionaries(self):
+    def create_sentiment_dictionaries(self, column):
         for file in self.csv_files:
             csv_data = pd.read_csv(file)
             year = DATA_ADJUSTER.get_year_from_string(file)
             sentiment_word_cloud = WordCloudSentiment()
             for index, row in csv_data.iterrows():
                 text, score, negation_usage, word_and_emoticon_usage = self.sentiment_analyzer.calculate_text_score_and_word_appearance(
-                    str(row['Text']))
+                    str(row[column]))
                 separated_emoticon_usage, separated_word_usage = DATA_ADJUSTER.separate_emoticons_and_words(
                     word_and_emoticon_usage)
                 sentiment_word_cloud.word_classification(separated_word_usage)
                 sentiment_word_cloud.emoticon_classification(separated_emoticon_usage)
             self.sentiment_word_cloud_data[year] = sentiment_word_cloud
-
-    def calculate_individual_tf_idf_scores_of_text(self):
-        for file in self.csv_files:
-            csv_data = pd.read_csv(file)
-            year = DATA_ADJUSTER.get_year_from_string(file)
-            result = DATA_ADJUSTER.get_tf_idf_scores_per_text(csv_data, 'Text')
-            print(result)
 
     def create_word_cloud(self):
         for freq in self.word_frequency:
@@ -94,6 +96,25 @@ class WordCloudGenerator(object):
             word_cloud = WordCloud(width=800, height=400, background_color="white")
             word_cloud.generate_from_frequencies(frequencies=data)
             self.word_clouds.append(word_cloud)
+
+    def create_figure_with_multiple_word_clouds(self):
+        for (file, word_array) in self.word_arrays:
+            fig = plt.figure(figsize=(15, 8))
+            columns = 5
+            rows = 2
+            for i in range(1, columns * rows + 1):
+                word_cloud = WordCloud(background_color="white", relative_scaling=0, prefer_horizontal=1,
+                                       min_font_size=45,
+                                       max_font_size=45, height=300, color_func=lambda *args, **kwargs: "black")
+                word_cloud.generate(text=' '.join(word_array))
+                ax = fig.add_subplot(rows, columns, i)
+                ax.set_title("Topic " + str(i), fontdict={'fontsize': 30, 'fontweight': 'medium'})
+                plt.imshow(word_cloud)
+                plt.axis("off")
+            plt.subplots_adjust(wspace=0.2, hspace=0)
+            year_of_data = DATA_ADJUSTER.get_year_from_string(file)
+            plt.suptitle("Topic keywords for " + year_of_data)
+            self.multiple_clouds_single_figure.append((file, fig))
 
     def create_sentiment_word_cloud(self):
         for year, cloud_sentiment in self.sentiment_word_cloud_data.items():
@@ -152,3 +173,8 @@ class WordCloudGenerator(object):
             head, tail = os.path.split(self.csv_files[count])
             word_cloud.to_file(output_folder_path + "\\" + tail[:-4] + "_word_cloud.png")
             count += 1
+
+    def save_figure(self, output_folder_path):
+        for (file, chart) in self.multiple_clouds_single_figure:
+            head, tail = os.path.split(file)
+            chart.savefig(output_folder_path + "\\" + tail[:-4] + "topic_keywords_wc.png")

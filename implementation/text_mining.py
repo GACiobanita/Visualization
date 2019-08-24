@@ -116,6 +116,19 @@ class TextMining(object):
         return model
 
     @staticmethod
+    def search_for_best_nmf_model(tf_idf_matrix, beta_loss, n_topics):
+
+        search_param = {'beta_loss': beta_loss, 'n_components': n_topics}
+
+        nmf = NMF()
+
+        model = GridSearchCV(nmf, param_grid=search_param, cv=3, iid=True)
+
+        model.fit(tf_idf_matrix)
+
+        return model
+
+    @staticmethod
     def get_dominant_topics_from_text(lda, term_freq, doc_length, n_topics):
         lda_output = lda.transform(term_freq)
 
@@ -167,11 +180,11 @@ class TextMining(object):
         x = lda_output_svd[:, 0]
         y = lda_output_svd[:, 1]
 
-        #plt.figure(figsize=(12, 12))
-        #plt.scatter(x, y, c=clusters)
-        #plt.ylabel('Y')
-        #plt.xlabel('X')
-        #plt.title("Segregation of Topic Clusters", )
-        #plt.show()
+        # plt.figure(figsize=(12, 12))
+        # plt.scatter(x, y, c=clusters)
+        # plt.ylabel('Y')
+        # plt.xlabel('X')
+        # plt.title("Segregation of Topic Clusters", )
+        # plt.show()
 
         return x, y, clusters
