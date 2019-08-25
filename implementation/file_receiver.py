@@ -13,6 +13,7 @@ class FileReceiver:
     def acquire_input_path(self):
         print("Default file path to input folder is: D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\PythonUsage")
         filepath = input("Input a new file path to a folder if you wish to change it: ")
+        self.csv_files = []
         if os.path.exists(filepath) is True:
             print("New file path selected.")
             self.input_folder_path = filepath

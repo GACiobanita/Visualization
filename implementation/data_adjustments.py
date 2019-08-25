@@ -114,3 +114,9 @@ class DataAdjustment(object):
     def get_file_name_from_path(full_str):
         head, tail = os.path.split(full_str)
         return tail[:-4]
+
+    def concatenate_csv_data(self, output_folder_path, file_name, first_set, second_set, first_set_name,
+                             second_set_column):
+        first_set[first_set_name] = second_set[second_set_column]
+        first_set.to_csv(output_folder_path + "\\" + file_name, index=None,
+                         header=True)
