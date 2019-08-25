@@ -73,6 +73,17 @@ class BarChartGenerator(object):
             self.file_rating_data.append(
                 (file_name, year, token_data, positive_compound_data, negative_compound_data, neutral_compound_data))
 
+    def categorize_topic_distribution(self):
+        topics = []
+        for file in self.csv_files:
+            data = pd.read_csv(file)
+            file_data = {}
+            for index, row in data.iterrows():
+                file_data[row['Topic Num']] = row['Num Texts']
+            head, tail = os.path.split(file)
+            topics.append((tail[:-4], file_data))
+        return topics
+
     # classify each review in the csv_files into different categories based on the number of words contained
     def categorize_text_by_word_count(self):
         for file in self.csv_files:
@@ -132,6 +143,10 @@ class BarChartGenerator(object):
         # create a bar chart for each file
         for year, dictionary in self.per_file_word_count:
             self.create_horizontal_bar_chart(dictionary, "Total Word Usage for " + str(year))
+
+    def create_bar_charts(self, data):
+        for file_name, dictionary in data:
+            self.create_horizontal_bar_chart(dictionary, file_name)
 
     def display_bar_charts(self):
         for chart in self.bar_charts:
@@ -318,6 +333,13 @@ class BarChartGenerator(object):
         plt.legend(handles=[positive_patch, negative_patch])
 
     def save_bar_charts(self, output_folder_path):
+        count = 0
+        for chart in self.bar_charts:
+            head, tail = os.path.split(self.csv_files[count])
+            chart.savefig(output_folder_path + "\\" + tail[:-4] + "_bar_chart.png")
+            count += 1
+
+    def save_overall_bar_charts(self, output_folder_path):
         count = 0
         self.bar_charts[0].savefig(
             output_folder_path + "\\" + "fraud_apps_640_review_info_final_total_word_usage_bar_chart.png")

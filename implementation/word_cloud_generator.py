@@ -52,7 +52,7 @@ class WordCloudGenerator(object):
         self.negative_emoticon_clouds = {}
 
         self.multiple_clouds_single_figure = []
-        self.word_arrays = []
+        self.file_topic_arrays = []
 
     def acquire_csv_files(self, csv_files):
         self.csv_files = csv_files
@@ -60,8 +60,10 @@ class WordCloudGenerator(object):
     def create_dictionaries_from_topics(self):
         for file in self.csv_files:
             data = pd.read_csv(file)
+            word_arrays = []
             for index, row in data.iterrows():
-                self.word_arrays.append((file, row.array[1:]))
+                word_arrays.append(row.array[1:])
+            self.file_topic_arrays.append((file, word_arrays))
 
     def create_dictionaries(self, column):
         for file in self.csv_files:
@@ -98,7 +100,8 @@ class WordCloudGenerator(object):
             self.word_clouds.append(word_cloud)
 
     def create_figure_with_multiple_word_clouds(self):
-        for (file, word_array) in self.word_arrays:
+
+        for (file, word_array) in self.file_topic_arrays:
             fig = plt.figure(figsize=(15, 8))
             columns = 5
             rows = 2
@@ -106,9 +109,9 @@ class WordCloudGenerator(object):
                 word_cloud = WordCloud(background_color="white", relative_scaling=0, prefer_horizontal=1,
                                        min_font_size=45,
                                        max_font_size=45, height=300, color_func=lambda *args, **kwargs: "black")
-                word_cloud.generate(text=' '.join(word_array))
+                word_cloud.generate(text=' '.join(word_array[i-1]))
                 ax = fig.add_subplot(rows, columns, i)
-                ax.set_title("Topic " + str(i), fontdict={'fontsize': 30, 'fontweight': 'medium'})
+                ax.set_title("Topic " + str(i - 1), fontdict={'fontsize': 30, 'fontweight': 'medium'})
                 plt.imshow(word_cloud)
                 plt.axis("off")
             plt.subplots_adjust(wspace=0.2, hspace=0)

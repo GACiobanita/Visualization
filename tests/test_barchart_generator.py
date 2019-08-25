@@ -48,7 +48,7 @@ class TestBarChart(unittest.TestCase):
         self.barchart_generator.categorize_text_by_word_count()
         self.barchart_generator.create_overall_bar_charts()
         self.barchart_generator.display_bar_charts()
-        self.barchart_generator.save_bar_charts("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
+        self.barchart_generator.save_overall_bar_charts("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
 
     def test_save_bar_charts_invalid(self):
         self.file_receiver.acquire_input_path()
@@ -56,7 +56,7 @@ class TestBarChart(unittest.TestCase):
         self.barchart_generator.categorize_text_by_word_count()
         self.barchart_generator.create_overall_bar_charts()
         self.barchart_generator.display_bar_charts()
-        self.barchart_generator.save_bar_charts("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
+        self.barchart_generator.save_overall_bar_charts("D:\\Google_Play_Fraud_Benign_Malware\\Visualizations")
 
     def test_calculate_word_occurrence_valid(self):
         self.barchart_generator.acquire_csv_files([

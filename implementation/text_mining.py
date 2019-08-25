@@ -14,6 +14,9 @@ import gensim
 import numpy as np
 import matplotlib.pyplot as plt
 
+MAX_DF = 0.4
+MIN_DF = 15
+
 
 class TextMining(object):
 
@@ -65,14 +68,18 @@ class TextMining(object):
 
     def create_tf_idf_matrix_from_texts(self, corpus):
         # create vectorizer for tf-idf matrix creation
-        vectorizer = TfidfVectorizer(lowercase=True, min_df=3, max_df=0.7, analyzer='word')
+        vectorizer = TfidfVectorizer(lowercase=True, min_df=MIN_DF, max_df=MAX_DF, analyzer='word')
         # fit and transform the plots, creating the tf-idf matrix
         # a tf-idf score reflects how import a word is in a collection of texts
         tf_idf_matrix = vectorizer.fit_transform(corpus)
         return tf_idf_matrix
 
-    def create_term_frequency_from_text(self, corpus):
-        vectorizer = CountVectorizer(lowercase=True, min_df=3, max_df=0.7, stop_words='english')
+    @staticmethod
+    def create_term_frequency_from_text(corpus, text_length):
+        if MAX_DF * text_length <= MIN_DF:
+            vectorizer = CountVectorizer(lowercase=True, min_df=0.1, max_df=MAX_DF, stop_words='english')
+        else:
+            vectorizer = CountVectorizer(lowercase=True, min_df=MIN_DF, max_df=MAX_DF, stop_words='english')
         tf = vectorizer.fit_transform(corpus)
         tf_feature_names = vectorizer.get_feature_names()
         return tf, tf_feature_names
@@ -132,9 +139,9 @@ class TextMining(object):
     def get_dominant_topics_from_text(lda, term_freq, doc_length, n_topics):
         lda_output = lda.transform(term_freq)
 
-        topic_names = ["Topic" + str(i + 1) for i in range(n_topics)]
+        topic_names = ["Topic" + str(i) for i in range(n_topics)]
 
-        doc_names = ["Doc" + str(i + 1) for i in range(doc_length)]
+        doc_names = ["Doc" + str(i) for i in range(doc_length)]
         df_document_topic = pd.DataFrame(np.round(lda_output, 2), columns=topic_names, index=doc_names)
 
         dominant_topic = np.argmax(df_document_topic.values, axis=1)
