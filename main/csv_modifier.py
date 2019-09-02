@@ -31,12 +31,22 @@ def main():
 
         file_receiver.acquire_output_path()
 
+        first_set_files = []
+        second_set_files = []
+        first_folder = []
         for i in range(0, len(first_set)):
-            head, tail = os.path.split(first_set[i])
-            first_data = pd.read_csv(first_set[i])
-            second_data = pd.read_csv(second_set[i])
-            data_adjuster.concatenate_csv_data(file_receiver.output_folder_path, tail, first_data, second_data,
-                                               "Dominant Topic", "dominant_topic")
+            first_head, first_tail = os.path.split(first_set[i])
+            first_folder = first_head
+            second_head, second_tail = os.path.split(second_set[i])
+            first_set_files.append(first_tail)
+            second_set_files.append(second_tail)
+
+        for file in first_set_files:
+            second_set_index = second_set_files.index(file)
+            first_data = pd.read_csv(first_folder + '\\' + file)
+            second_data = pd.read_csv(second_set[second_set_index])
+            data_adjuster.concatenate_csv_data(file_receiver.output_folder_path, file, first_data, second_data,
+                                               "Main Topic", "Main Topic")
 
 
 if __name__ == "__main__":

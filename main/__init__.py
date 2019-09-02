@@ -1,2 +1,7 @@
 from implementation import word_cloud_generator
 from implementation import bar_chart_generator
+from implementation import line_chart_generator
+from implementation import pie_chart_generator
+from implementation import data_adjustments
+from implementation import text_mining
+from implementation import dendrogram_generator

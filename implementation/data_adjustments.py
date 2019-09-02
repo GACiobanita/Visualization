@@ -73,6 +73,11 @@ class DataAdjustment(object):
         return csv_files, data, output_file_path
 
     @staticmethod
+    def remove_numbers_from_string(string_item):
+        pattern = '[0-9]'
+        return re.sub(pattern, '', string_item)
+
+    @staticmethod
     def save_csv_file(file_name, data, output_folder_path):
         head, tail = os.path.split(file_name)
         data.to_csv(output_folder_path + "\\" + tail, index=None,

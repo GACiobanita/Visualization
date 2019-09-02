@@ -5,6 +5,7 @@ from .data_adjustments import DataAdjustment
 from .sentiment_analyzer import SentimentAnalyzer
 from .pie_chart_generator import PieChartGenerator
 from .text_mining import TextMining
+from .dendrogram_generator import DendrogramGenerator
 
 __all__ = [
     "WordCloudGenerator",
@@ -13,5 +14,6 @@ __all__ = [
     "DataAdjustment",
     "SentimentAnalyzer",
     "PieChartGenerator",
-    "TextMining"
+    "TextMining",
+    "DendrogramGenerator"
 ]

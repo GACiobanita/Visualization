@@ -12,7 +12,7 @@ def main():
     pie_chart_generator.acquire_csv_files(file_receiver.csv_files)
     pie_chart_generator.get_counts_from_csv_files()
     pie_chart_generator.create_basic_pie_chart()
-    pie_chart_generator.create_nested_pie_chart()
+    pie_chart_generator.create_nested_pie_chart_sentiment_and_rating()
 
     pie_chart_generator.save_basic_pie_charts(file_receiver.output_folder_path)
     pie_chart_generator.save_nested_pie_chart(file_receiver.output_folder_path)

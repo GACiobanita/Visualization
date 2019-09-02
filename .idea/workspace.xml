@@ -2,17 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ced637e1-c500-451a-aed5-7eab72a3458e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/implementation/dendrogram_generator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/create_dendrograms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_dendrogram.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/bar_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/bar_chart_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/data_adjustments.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/data_adjustments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/file_receiver.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/file_receiver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/text_mining.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/text_mining.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/word_cloud_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/word_cloud_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/create_barcharts.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/create_barcharts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/pie_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/pie_chart_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/create_piecharts.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/create_piecharts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/csv_modifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/csv_modifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/text_miner.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/text_miner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_barchart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_barchart_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_text_mining.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_text_mining.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_pie_chart_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_pie_chart_generator.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,8 +60,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.csv_modifier">
-    <configuration name="create_barcharts" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python tests.Unittests for test_pie_chart_generator.TestPieChartGenerator.test_create_nested_pie_chart_sentiment_and_topic_valid">
+    <configuration name="create_dendrograms" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -71,7 +73,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/create_barcharts.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/create_dendrograms.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -80,70 +82,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="create_wordclouds" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Visualization" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/create_wordclouds.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="csv_modifier" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Visualization" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/csv_modifier.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="text_miner" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Visualization" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/text_miner.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for test_text_mining.TestTextMining.test_search_for_best_lda_model" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_dendrogram.Test_DendrogramGenerator.test_construct_dendrogram" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Visualization" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -153,17 +92,59 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_text_mining.TestTextMining.test_search_for_best_lda_model&quot;" />
+      <option name="_new_target" value="&quot;test_dendrogram.Test_DendrogramGenerator.test_construct_dendrogram&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for test_pie_chart_generator.TestPieChartGenerator.test_create_nested_pie_chart_sentiment_and_rating_valid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Visualization" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_pie_chart_generator.TestPieChartGenerator.test_create_nested_pie_chart_sentiment_and_rating_valid&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for test_pie_chart_generator.TestPieChartGenerator.test_create_nested_pie_chart_sentiment_and_topic_valid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Visualization" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_pie_chart_generator.TestPieChartGenerator.test_create_nested_pie_chart_sentiment_and_topic_valid&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for test_pie_chart_generator.TestPieChartGenerator.test_get_counts_from_csv_files_valid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Visualization" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_pie_chart_generator.TestPieChartGenerator.test_get_counts_from_csv_files_valid&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.csv_modifier" />
-        <item itemvalue="Python.create_barcharts" />
-        <item itemvalue="Python.create_wordclouds" />
-        <item itemvalue="Python tests.Unittests for test_text_mining.TestTextMining.test_search_for_best_lda_model" />
-        <item itemvalue="Python.text_miner" />
+        <item itemvalue="Python tests.Unittests for test_pie_chart_generator.TestPieChartGenerator.test_create_nested_pie_chart_sentiment_and_topic_valid" />
+        <item itemvalue="Python tests.Unittests for test_pie_chart_generator.TestPieChartGenerator.test_create_nested_pie_chart_sentiment_and_rating_valid" />
+        <item itemvalue="Python tests.Unittests for test_pie_chart_generator.TestPieChartGenerator.test_get_counts_from_csv_files_valid" />
+        <item itemvalue="Python.create_dendrograms" />
+        <item itemvalue="Python tests.Unittests for test_dendrogram.Test_DendrogramGenerator.test_construct_dendrogram" />
       </list>
     </recent_temporary>
   </component>
@@ -195,18 +176,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/implementation/pie_chart_generator.py</url>
-          <line>180</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/implementation/pie_chart_generator.py</url>
-          <line>173</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

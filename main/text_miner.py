@@ -4,8 +4,8 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 
-N_TOPICS = [10, 15, 20]
-LEARNING_DECAY = [0.5, 0.7, 0.9]
+N_TOPICS = [10]
+LEARNING_DECAY = [0.5]
 TOP_WORDS = 10
 
 
@@ -30,6 +30,7 @@ def create_cluster_plot(x, y, clusters, output_folder_path, file_name):
     print("Creating cluster plot for:" + str(file_name))
     plt.figure(figsize=(12, 8))
     plt.scatter(x, y, c=clusters)
+    print(clusters)
     plt.xlabel("Component 1")
     plt.ylabel("Component 2")
     plt.title("Segregation of Topic clusters")
@@ -39,11 +40,11 @@ def create_cluster_plot(x, y, clusters, output_folder_path, file_name):
 
 def get_csv_files_from_directories():
     csv_directories = [
-        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2012\\sentiment",
-        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2013\\sentiment",
-        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2016\\sentiment",
-        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2015\\sentiment",
-        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2016\\sentiment"]
+        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2012\\sentiment"]#,
+        #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2013\\sentiment",
+        #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2014\\sentiment",
+        #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2015\\sentiment",
+        #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2016\\sentiment"]
     file_extension = ".csv"
     for directory_path in csv_directories:
         filenames = os.listdir(directory_path)
@@ -54,11 +55,11 @@ def get_csv_files_from_directories():
 
 def get_output_directory(year):
     csv_output_directories = [
-        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2012",
-        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2013",
-        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2016",
-        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2015",
-        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2016"]
+        "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2012"]#,
+        #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2013",
+        #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2014",
+        #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2015",
+        #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2016"]
     for directory in csv_output_directories:
         if year in str(directory):
             return directory
