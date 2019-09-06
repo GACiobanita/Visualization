@@ -31,7 +31,6 @@ def main():
     for i in range(0, len(input_folders)):
         filenames = get_csv_files_from_directories(input_folders[i])
         for filename in filenames:
-            print(filename)
             csv_data = pd.read_csv(input_folders[i] + '\\' + filename)
             topics = dendrogram_generator.construct_topics_from_file(csv_data)
             topic_dicts = dendrogram_generator.construct_topic_vocabulary_from_file(csv_data, topics)

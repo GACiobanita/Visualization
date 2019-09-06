@@ -46,7 +46,7 @@ def main():
             first_data = pd.read_csv(first_folder + '\\' + file)
             second_data = pd.read_csv(second_set[second_set_index])
             data_adjuster.concatenate_csv_data(file_receiver.output_folder_path, file, first_data, second_data,
-                                               "Main Topic", "Main Topic")
+                                               "Topic ID", "Topic Count")
 
 
 if __name__ == "__main__":
