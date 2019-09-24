@@ -333,7 +333,7 @@ class PieChartGenerator(object):
                 fontsize=self.BOTTOM_TEXT_FONT_SIZE, verticalalignment='bottom', horizontalalignment='center')
 
             plt.setp(inside_ring, width=0.4, edgecolor='white')
-            plt.title('Distribution of sentiment and ratings in ' + year, fontsize=30, pad=30)
+            plt.title('Distribution of sentiment and topics in ' + year, fontsize=30, pad=30)
             sentiment_legend = self.create_legend(['Positive', 'Negative', 'Neutral'], 'Sentiment Legend:',
                                                   'upper right')
             topic_legend = self.create_legend(topic_names, 'Topics:',
@@ -431,7 +431,8 @@ class PieChartGenerator(object):
             ax.annotate('Reviews:', xy=(size[0] / 2 + self.CENTER_TEXT_FONT_SIZE / 2, size[1] / 2),
                         xycoords='figure pixels', fontsize=self.CENTER_TEXT_FONT_SIZE,
                         horizontalalignment='center', verticalalignment='center')
-            ax.annotate(str(total),
+            ax.annotate(str(
+                chart_data.positive_chart_section.section_count + chart_data.negative_chart_section.section_count + chart_data.neutral_chart_section.section_count),
                         xy=(size[0] / 2 + self.CENTER_TEXT_FONT_SIZE / 2, size[1] / 2 - self.CENTER_TEXT_FONT_SIZE),
                         xycoords='figure pixels', fontsize=self.CENTER_TEXT_FONT_SIZE,
                         horizontalalignment='center', verticalalignment='top')
@@ -442,7 +443,7 @@ class PieChartGenerator(object):
                 fontsize=self.BOTTOM_TEXT_FONT_SIZE, verticalalignment='bottom', horizontalalignment='center')
 
             plt.setp(inside_ring, width=0.4, edgecolor='white')
-            plt.title('Distribution of sentiment and ratings in ' + year, fontsize=30, pad=30)
+            plt.title('Distribution of ratings and topics in ' + year, fontsize=30, pad=30)
             sentiment_legend = self.create_legend(['5', '4', '3', '2', '1'], 'Ratings:',
                                                   'upper right')
             topic_legend = self.create_legend(topic_names, 'Topics:',
