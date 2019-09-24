@@ -3,6 +3,7 @@ import pandas as pd
 from .data_adjustments import DataAdjustment
 import math
 import os
+import numpy as np
 
 
 class LineChartGenerator(object):
@@ -15,6 +16,9 @@ class LineChartGenerator(object):
         self.yearly_app_data_line_charts = []
         self.all_year_data = []
         self.all_year_data_line_charts = []
+
+        self.total_word_count = {'0-50': 0, '51-100': 0, '101-200': 0, '201-300': 0, '301-400': 0, '400+': 0}
+        self.per_file_character_count = []
 
         # chart creation variables
         self.SMALLEST_SYMBOL_SIZE = 200
@@ -209,6 +213,85 @@ class LineChartGenerator(object):
             chart.savefig(output_folder_path + "\\" + tail[:-4] + "_line_chart.png")
             count += 1
 
-    def display_bar_charts(self):
+    def display_line_charts(self):
         for chart in self.line_charts:
             chart.show()
+
+    # classify each review in the csv_files into different categories based on the number of words contained
+    def categorize_text_by_character_count(self):
+        for file in self.csv_files:
+            current_word_count = {'0-50': 0, '51-100': 0, '101-200': 0, '201-300': 0, '301-400': 0, '400+': 0}
+            data = pd.read_csv(file)
+            for text in data['Text']:
+                text = str(text)
+                text = self.data_adjuster.remove_string_punctuation(text)
+                self.allocate_review_to_count_category(len(text), current_word_count)
+            self.per_file_character_count.append((self.data_adjuster.get_year_from_string(file), current_word_count))
+        self.calculate_total_word_count_of_files()
+
+    def calculate_total_word_count_of_files(self):
+        self.total_word_count['0-50'] = sum([item['0-50'] for year, item in self.per_file_character_count])
+        self.total_word_count['51-100'] = sum([item['51-100'] for year, item in self.per_file_character_count])
+        self.total_word_count['101-200'] = sum([item['51-100'] for year, item in self.per_file_character_count])
+        self.total_word_count['201-300'] = sum([item['51-100'] for year, item in self.per_file_character_count])
+        self.total_word_count['301-400'] = sum([item['51-100'] for year, item in self.per_file_character_count])
+        self.total_word_count['400+'] = sum([item['400+'] for year, item in self.per_file_character_count])
+
+    @staticmethod
+    def allocate_review_to_count_category(length, category_container):
+        for key, value in category_container.items():
+            # split the key into min and max values in order to increase the count based on text length
+            min_max = key.split("-")
+            if len(min_max) != 1:
+                minimum = int(min_max[0])
+                maximum = int(min_max[1])
+                if minimum <= length <= maximum:
+                    category_container[key] += 1
+            else:
+                minimum = int(min_max[0][:-1])
+                if minimum < length:
+                    category_container[key] += 1
+
+    def create_overall_bar_charts(self):
+        # create the total word count bar chart
+        self.create_simple_line_chart(self.total_word_count, "Total Word Usage 2012-2016")
+        # create a bar chart for each file
+        for year, dictionary in self.per_file_character_count:
+            self.create_simple_line_chart(dictionary, "Total Word Usage for " + str(year))
+
+    def create_simple_line_chart(self):
+        fig = plt.figure(figsize=(8, 6))
+        ax = fig.add_subplot()
+        color_list = ['b', 'g', 'r', 'y', 'c']
+        year_list = []
+        color_count = 0
+        lines = []
+        for year, dictionary in self.per_file_character_count:
+            # data
+            line_height = []
+            line_name = []
+            for key, value in dictionary.items():
+                # bar height is the value of the key, in this case the total count
+                line_height.append(value)
+                # and the name of the bar is the key itself
+                line_name.append(key)
+
+            x_pos = np.arange(len(line_name))  # is the number of items in the dict
+
+            ax.plot(x_pos, line_height, color=color_list[color_count])
+            year_list.append(color_list[color_count]+' '+str(year))
+            color_count+=1
+
+            # create a legend explaining the average
+            # loc 0 places the legend in the 'best' location where there would be minimum overlap with the chart
+        ax.set_xticks(x_pos)
+        ax.set_ylabel('Number of reviews')
+        ax.set_xlabel('Characters per review')
+        ax.set_xticklabels(line_name)
+        ax.set_title("Character usage between 2012-2016")
+        plt.legend(["2012", "2013", "2014", "2015", "2016"], loc='0')
+        self.line_charts.append(fig)
+
+    def save_line_chart(self, output_folder_path):
+        for chart in self.line_charts:
+            chart.savefig(output_folder_path + "\\total_word_usage_line_chart.png")

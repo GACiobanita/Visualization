@@ -86,25 +86,6 @@ class TestBarChart(unittest.TestCase):
         self.barchart_generator.create_divergent_valence_bar_chart()
         self.assertNotEqual(0, len(self.barchart_generator.file_valence_data))
 
-    def test_create_divergent_valence_bar_chart_valid(self):
-        self.barchart_generator.acquire_csv_files([
-            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest\\fraud_apps_640_review_info_final_2012_top_10.csv'])
-        self.barchart_generator.categorize_words_by_valence()
-        self.barchart_generator.create_divergent_valence_bar_chart()
-        self.barchart_generator.save_divergent_bar_charts(
-            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest')
-        self.assertNotEqual(0, len(self.barchart_generator.file_valence_data))
-
-    def test_create_divergent_valence_bar_chart_invalid(self):
-        self.barchart_generator.acquire_csv_files([
-            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest\\fraud_apps_640_review_info_final_2012_top_10.csv'])
-        self.barchart_generator.categorize_words_by_valence()
-        self.barchart_generator.create_divergent_valence_bar_chart()
-        self.barchart_generator.divergent_bar_chart[0] = None
-        self.barchart_generator.save_divergent_bar_charts(
-            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest')
-        self.assertNotEqual(0, len(self.barchart_generator.file_valence_data))
-
     def test_categorize_rating(self):
         self.barchart_generator.acquire_csv_files([
             'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\PieChartTest\\fraud_apps_640_review_info_final_2012_top_10.csv'])
@@ -112,7 +93,7 @@ class TestBarChart(unittest.TestCase):
 
     def test_create_rating_bar_charts(self):
         self.barchart_generator.acquire_csv_files([
-            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2012\\sentiment\\fraud_apps_2012_top_10_no_anon_reviews_including_sentiment_score.csv'])
+            'D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2012\\sentiment\\fraud_apps_2012_all_anon_reviews_including_sentiment_score.csv'])
         self.barchart_generator.categorize_ratings()
         self.barchart_generator.create_rating_bar_charts()
 

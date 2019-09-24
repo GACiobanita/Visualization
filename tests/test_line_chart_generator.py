@@ -9,6 +9,25 @@ class TestLineChart(unittest.TestCase):
         self.file_receiver = FileReceiver()
         self.line_chart_generator = LineChartGenerator()
 
+    def test_categorize_text_by_word_count(self):
+        self.line_chart_generator.acquire_csv_files([
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2013\\sentiment\\fraud_apps_2013_all_anon_reviews_including_sentiment_score.csv"
+        ])
+        self.line_chart_generator.categorize_text_by_character_count()
+        self.assertNotEqual(0, len(self.line_chart_generator.per_file_character_count))
+
+    def test_create_simple_line_chart(self):
+        self.line_chart_generator.acquire_csv_files([
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2012\\sentiment\\fraud_apps_2012_all_anon_reviews_including_sentiment_score.csv",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2013\\sentiment\\fraud_apps_2013_all_anon_reviews_including_sentiment_score.csv",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2014\\sentiment\\fraud_apps_2014_all_anon_including_sentiment_score.csv",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2015\\sentiment\\fraud_apps_2015_all_anon_reviews_including_sentiment_score.csv",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\2016\\sentiment\\fraud_apps_2016_all_anon_reviews_including_sentiment_score.csv"
+        ])
+        self.line_chart_generator.categorize_text_by_character_count()
+        self.line_chart_generator.create_simple_line_chart()
+        self.assertNotEqual(0, len(self.line_chart_generator.line_charts))
+
     def test_calculate_monthly_app_reviews_valid(self):
         self.line_chart_generator.acquire_csv_files(
             ['D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\Test\\fraud_apps_640_review_info_final_2014_top_10.csv'])

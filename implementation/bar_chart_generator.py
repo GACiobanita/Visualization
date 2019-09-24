@@ -139,10 +139,10 @@ class BarChartGenerator(object):
 
     def create_overall_bar_charts(self):
         # create the total word count bar chart
-        self.create_horizontal_bar_chart(self.total_word_count, "Total Word Usage 2012-2016")
+        self.create_horizontal_bar_chart(self.total_word_count, "Character Length 2012-2016")
         # create a bar chart for each file
         for year, dictionary in self.per_file_word_count:
-            self.create_horizontal_bar_chart(dictionary, "Total Word Usage for " + str(year))
+            self.create_horizontal_bar_chart(dictionary, "Character Length for " + str(year))
 
     def create_bar_charts(self, data):
         for file_name, dictionary in data:
@@ -177,14 +177,13 @@ class BarChartGenerator(object):
         ax.set_yticks(y_pos)
         ax.set_yticklabels(bar_name)
         ax.invert_yaxis()
-        ax.set_ylabel('Words Per Rating')
+        ax.set_ylabel('Characters per Rating')
         ax.set_xlabel('Number of reviews')
         ax.set_title(title)
 
         # create a line in the bar chart to show the location of the average word count
         ax.axvline(np.mean(list(dictionary.values())), color='red',
                    label='Average of categories: ' + str(int(np.mean(list(dictionary.values())))))
-        print(str(int(np.mean(list(dictionary.values())))))
 
         # create a legend explaining the average
         # loc 0 places the legend in the 'best' location where there would be minimum overlap with the chart
@@ -195,10 +194,10 @@ class BarChartGenerator(object):
     def create_rating_bar_charts(self):
         for file_name, year, token_data, positive_compound, negative_compound, neutral_compound in self.file_rating_data:
             # make 2 subplots, 1 for a simple display of rating count and one for ratings divided by sentiment
-            fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(len(token_data.keys()) * 3, len(token_data.keys())),
+            fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(len(token_data.keys()) * 4, len(token_data.keys())),
                                            constrained_layout=True)
             # title
-            fig.suptitle(file_name + ' ' + year)
+            fig.suptitle("Rating Distribution and Rating Sentiment Distribution for " + ' ' + year)
             x_labels = []
             y_height = []
             # we will have 3 bars for neutral, positive and negative, so each bar will be of length 0.3 in height
@@ -212,26 +211,41 @@ class BarChartGenerator(object):
 
             y_label_locations = np.arange(len(x_labels))
 
-            simple_rect = ax1.barh(y_label_locations, y_height, height=height / 3, align='center')
-            ax1.set_ylabel('Ratings')
-            ax1.set_yticks(np.arange(len(x_labels)))
-            ax1.set_yticklabels(x_labels)
-            ax1.set_xlabel('Number of Ratings')
+            ax1.plot(y_label_locations, y_height, 'bo-')
+            ax1.set_xlabel('Ratings')
+            ax1.set_xticks(np.arange(len(x_labels)))
+            ax1.set_xticklabels(x_labels)
+            ax1.set_ylabel('Number of Ratings')
+
+            ax1.axhline(np.mean(y_height), color='red',
+                        label='Average of categories: ' + str(int(np.mean(y_height))))
+            ax1.legend(loc='0')
+
+            for x, y in zip([0, 1, 2, 3, 4], y_height):
+                ax1.annotate(str(y), xy=(x, y))
 
             # drawn with white bars , first one so the others will drawn on top, to raise the level of the Y axis ticks
             # to that of the left figure
-            positive_rect = ax2.barh(y_label_locations - height / 3, sorted(positive_compound.values(), reverse=True),
-                                     height / 3, label='Positive', color='g')
-            neutral_rect = ax2.barh(y_label_locations, sorted(neutral_compound.values(), reverse=True), height / 3,
-                                    label='Neutral', color='0.5')
-            negative_rect = ax2.barh(y_label_locations + height / 3, sorted(negative_compound.values(), reverse=True),
-                                     height / 3, label='Negative', color='r')
+            positive_values = []
+            for key in sorted(positive_compound.keys(), reverse=True):
+                positive_values.append(positive_compound[key])
+            positive_rect = ax2.bar(y_label_locations - height / 3, positive_values,
+                                    height / 3, label='Positive', color='g')
+            neutral_values = []
+            for key in sorted(neutral_compound.keys(), reverse=True):
+                neutral_values.append(neutral_compound[key])
+            neutral_rect = ax2.bar(y_label_locations, neutral_values, height / 3,
+                                   label='Neutral', color='0.5')
+            negative_values = []
+            for key in sorted(negative_compound.keys(), reverse=True):
+                negative_values.append(negative_compound[key])
+            negative_rect = ax2.bar(y_label_locations + height / 3, negative_values,
+                                    height / 3, label='Negative', color='r')
             # ax2.set_ylabel('Ratings separated by emotion')
-            ax2.set_yticks(np.arange(len(x_labels)))
-            ax2.set_yticklabels(x_labels)
+            ax2.set_xticks(np.arange(len(x_labels)))
+            ax2.set_xticklabels(x_labels)
 
             # add rating counts to above each bar
-            self.label_ratings(simple_rect, ax1)
             self.label_ratings(positive_rect, ax2)
             self.label_ratings(negative_rect, ax2)
             self.label_ratings(neutral_rect, ax2)
@@ -242,10 +256,9 @@ class BarChartGenerator(object):
     @staticmethod
     def label_ratings(rects, ax):
         for rect in rects:
-            width = rect.get_width()
-            ax.text(rect.get_width(), rect.get_y() + 0.5 * rect.get_height(),
-                    '{}'.format(width), wrap=True,
-                    ha='left', va='center')
+            height = rect.get_height()
+            ax.text(rect.get_x() + rect.get_width() / 2, height, '{}'.format(height),
+                    ha='center', va='bottom')
 
     # these are bar charts that go in separate directions
     # they are still horizontal
@@ -313,6 +326,7 @@ class BarChartGenerator(object):
             ax.set_yticklabels(y_labels)
             ax.set_xlabel('Word frequency * Valence Value')
             self.create_legend(['Positive', 'Negative'], positive_colour, negative_colour)
+            plt.tight_layout()
             self.divergent_bar_charts.append(fig)
 
     @staticmethod

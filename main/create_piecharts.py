@@ -36,17 +36,17 @@ def main():
         pie_chart_generator.save_nested_pie_chart(file_receiver.output_folder_path)
     elif pie_type == 'ST':
         input_folders = [
-            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2012"#,
-            #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2013",
-            #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2014",
-            #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2015",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2016",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2013",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2014",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2015",
             #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2016"
         ]
         output_folders = [
-            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2012\\Sentiment-Topic Nested Pie Charts"#,
-            #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2013\\Sentiment-Topic Nested Pie Charts",
-            #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2014\\Sentiment-Topic Nested Pie Charts",
-            #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2015\\Sentiment-Topic Nested Pie Charts",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2016\\Sentiment-Topic Nested Pie Charts",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2013\\Sentiment-Topic Nested Pie Charts",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2014\\Sentiment-Topic Nested Pie Charts",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2015\\Sentiment-Topic Nested Pie Charts",
             #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2016\\Sentiment-Topic Nested Pie Charts"
         ]
 
@@ -62,18 +62,18 @@ def main():
 
     elif pie_type == 'RT':
         input_folders = [
-            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2012",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2016",
             "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2013",
             "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2014",
-            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2015",
-            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2016"
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2015"#,
+            #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\Sentiment & Topic\\2016"
         ]
         output_folders = [
-            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2012\\Rating-Topic Nested Pie Charts",
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2016\\Rating-Topic Nested Pie Charts",
             "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2013\\Rating-Topic Nested Pie Charts",
             "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2014\\Rating-Topic Nested Pie Charts",
-            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2015\\Rating-Topic Nested Pie Charts",
-            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2016\\Rating-Topic Nested Pie Charts"
+            "D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2015\\Rating-Topic Nested Pie Charts"#,
+            #"D:\\Google_Play_Fraud_Benign_Malware\\Fraud\\All Data\\LATENT DIRICHLET ALLOCATION\\2016\\Rating-Topic Nested Pie Charts"
         ]
 
         for i in range(0, len(input_folders)):
