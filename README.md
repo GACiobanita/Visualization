@@ -7,19 +7,26 @@ Before installing new applications from the Google Play Store consumers explore 
 ## Introduction
 
 Reviews represent an individuals feelings towards a product, usually accompanied by a rating system, offering feedback that increases or decreases the standing of a product in their respective market. Consumers rely on reviews to determine if a product is worth purchasing, or using. This creates the possibility of influencing the review system, for the benefit of a product or the detriment of a competitor.
+
 Fraud detection is a popular subject for machine learning. A large amount of review data is used in fraud detection algorithm development, the Play Store platform reaching a total of 3.6 million reviews in March 2018, to the benefit of their development.
 In fraud detection, machine learning algorithms train using review features. These review features are extract from the data using existent techniques, such as Sentiment Analysis, or are already existent in the dataset, such as reviewer account details.  Following training, and testing, these algorithms are then deployed in the review environment to function.
+
 To facilitate the development of these algorithms, our aim was to apply qualitative data analysis techniques to uncover key review features from the review dataset.
 To do so we used Natural Language Processing(NLP) techniques to extract hidden information from our shaped data. We use a lexicon and rule-based sentiment analysis tool named VADER, using its own dictionary of sentiments.
+
 Another NLP technique we used was the creation of statistical models using Latent Dirichlet Allocation(LDA), proposed by David Blei. LDA models contain topic distributions, where each review gravitates towards a specific topic. 
+
 From our research we discover the relationship between topic, sentiment and rating features found in reviews and display it using visualizations.
+
 Considering this relationship between features, we discuss the possible implementation of topic modeling, as of the machine learning process in fraud detection algorithms.
 
 ## Objectives
 
 In the project proposal document we proposed the following research questions and objectives for our project:
+
 RQ1: What visualizations of review data are effective in showing the different features of reviews in order to better classify them?  
 RO1: To design visualizations of fraudulent reviews on the Google play market that are effective in uncovering the different features of a review that are omitted in existing machine learning algorithms.  
+
 RQ2:  Can existing machine learning algorithms be adapted to account for the topics of a review in their classification of reviews? (features illustrated in the data visualization of review)
 RO2: To apply topic modeling techniques on reviews datasets to learn how topics are formed and how they can be used to identify review intent in machine learning algorithms.
 
@@ -28,16 +35,20 @@ RO2: To apply topic modeling techniques on reviews datasets to learn how topics 
 ### 1. Data Shaping
 
 To clear and and shape our dataset, we’ve used OpenRefine[11], a free and open source tool for working with messy data. OpenRefine offers a simple Graphical User Interface with features for cell, row and column editing from the beginning, such as filtering, faceting, splitting, joining, transposing.
+
 For advanced transforms, OpenRefine allowed us to use the Python programming language, used throughout the entire project, for the creation of custom transform expressions.
+
 Changes to the dataset involved:
 •	Removal of rows that contained corrupted data/characters(Ã°Å¸â€˜Å) in any of their columns, making data invalid
 •	Standardizing the review date to dd/mm/yyyy  format followed by the separation of the new format into Day/Month/Year columns, having made possible the creation of monthly timelines
 •	Standardization of rating scores in the dataset. All review scores were changed from percentages(100%, 80%, 60%, 40%, 20%) to the current Google Play star system (5, 4, 3, 2, 1)
+
 We make use of previously collected Google Play metadata, containing review data from, and including, 2010 to 2016, containing a total of 212877 entries of textual data in the English language. 
 
 ### 2. VADER Sentiment Analysis
 
 The functionality of VADER is available on the Python 3 package named vaderSentiment, used in our project. This version, compared to Python 3 has improved modularity, it’s credibility being confirmed after the inclusion of VADER into the Natural Language Toolkit(NLTK) Python package[15]. 
+
 We modify VADER, specifically the polarity_scores() method of the SentimentIntensityAnalyzer class to return all used words and emoticons alongside the initial score return.
 For information regarding VADER, visit: https://github.com/cjhutto/vaderSentiment
 
@@ -49,10 +60,12 @@ We use the Latent Dirichlet Allocation algorithm to describe each one of our rev
 
 Once we know the sets of topics each review is composed of, we use K-means clustering to find regions composed of reviews with similar topics.
 
-#### 4. Visualizations
+### 4. Visualizations
 
 To support their analysis and display results we use different visualizations of our dataset.
+
 To develop our visualizations we’ve used the Matplotlib plotting library, for  the Python programming language. Both Matplotlib and Vega-Lite support the creation of detailed visualizations, as Matplotlib is capable of creating the same visualizations as Vega-Lite, without it’s interactive visualization features, which are not a necessity of our project.
+
 Additionally, Matplotlib has  more detailed API documentation and a larger example gallery using Python, as Vega-Lite’s examples and documentation uses JavaScript Object Notation(JSON) formats in their definition.
 
 Used visualization designs:
@@ -66,10 +79,15 @@ Used visualization designs:
 ### 5. Conclusion
 
 The results of this study reveal the similarities between Play Store reviews and texts from social media platforms, such as Twitter.
+
 We applied sentiment analysis, using VADER, and topic modeling, using the LDA algorithm, to find the different features of our review texts, which are added to our datasets.
+
 VADER is used to analyze the word lists available in each review, and classify them into positive, negative and neutral. For each dataset, multiple LDA models are built in order to find the best model, giving us our review-topic probability matrix from which we extract the topics of our sets.
+
 We’ve created multiple visualizations which helped us find relationships between their features. We discovered an increasing trend in our data where reviews increased in length across the years, suspicious behaviour in the top 10 most reviewed applications for the years 2015 and 2016, containing the largest count of 5 score ratings and Generic topic reviews  
+
 For future work, we discussed the use of LDA in algorithms that detect the intent with which reviews are written, by creating a system that makes use of a topic lexicon for better topic identification. Additionally we describe what other features can be discovered from our datasets to aid in this process.
+
 This project has taught and increased our knowledge in multiples areas of study. The following is a list of personal achievements:
 •	Enhanced knowledge of Object programming by learning Python throughout the project
 •	Improved usage of test routines in Object programming
