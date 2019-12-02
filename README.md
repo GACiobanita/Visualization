@@ -1,4 +1,4 @@
-# Visualization
+# Using data visualization to analyze fraudulent reviewing behavior on the Google Play store to inform machine learning
 MSc Project using VADER Sentiment for lexicon based sentiment analysis and Latent Dirichlet Allocation for topic modelling, on a dataset of Google Play review to discover fraudulent behaviour in reviews
 
 ## Abstract.
